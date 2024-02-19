@@ -1,0 +1,68 @@
+<!-- <form [formGroup]="signUpForm" (ngSubmit)="submit()" class="max-w-md mx-auto p-6 bg-white rounded shadow-md">
+  <div class="text-center">
+    <h1 class="text-xl font-semibold">Sign Up</h1>
+    <p class="text-sm text-gray-600">Please fill in this form to create an account.</p>
+  </div>
+
+  <div class="mt-6">
+    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+    <input type="text" formControlName="username" id="username" placeholder="Enter Username" required
+      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+    <app-error-message [control]="signUpForm.get('username')" error="required" message="Username is required."></app-error-message>
+  </div>
+
+  <div class="mt-6">
+    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+    <app-type-head-select label="City" [control]="signUpForm.get('city')" id="city" datalistId="customOptions"
+      [options]="City" placeholder="Type or select an option"></app-type-head-select>
+    <app-error-message [control]="signUpForm.get('city')" error="required" message="City is required."></app-error-message>
+  </div>
+
+  <div class="mt-6">
+    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+    <input type="email" formControlName="email" id="email" placeholder="Enter Email" required
+      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+    <app-error-message [control]="signUpForm.get('email')" error="required" message="Email is required."></app-error-message>
+    <app-error-message [control]="signUpForm.get('email')" error="email"
+      message="Please enter a valid email address."></app-error-message>
+  </div>
+
+  <div class="mt-6">
+    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+    <input type="password" formControlName="password" id="password" placeholder="Enter Password" required
+      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+    <app-error-message [control]="signUpForm.get('password')" error="required" message="Password is required."></app-error-message>
+  </div>
+
+  <div class="mt-6 flex">
+    <label for="phoneCode" class="block text-sm font-medium text-gray-700">Phone Number</label>
+    <select formControlName="phoneCode" id="phoneCode" required
+      class="ml-2 block w-20 py-2 px-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+      <option selected hidden value="">Code</option>
+      <option value="98">+98</option>
+      <option value="99">+99</option>
+      <option value="90">+90</option>
+      <option value="66">+66</option>
+    </select>
+    <input type="text" formControlName="phone" placeholder="812345678" required
+      class="ml-2 flex-grow py-2 px-3 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+    <app-error-message [control]="signUpForm.get('phone')" error="required" message="Phone number is required."></app-error-message>
+  </div>
+
+  <div class="mt-6">
+    <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+    <mat-form-field class="mt-1 w-full">
+      <input formControlName="dob" id="dob" matInput [matDatepicker]="datepicker"
+        class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+    <app-error-message [control]="signUpForm.get('dob')" error="required" message="Date of Birth is required."></app-error-message>
+  </div>
+
+  <div class="mt-6 text-center">
+    <button type="submit" [disabled]="signUpForm.invalid"
+      class="py-2 px-4 bg-green-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">Sign
+      Up</button>
+  </div>
+</form> -->
