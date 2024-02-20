@@ -41,7 +41,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 return event;
             }),
             catchError((error: HttpErrorResponse) => {
-                this.router.navigateByUrl('/auth');
+                // this.router.navigateByUrl('/auth');
 
                 return throwError(error);
             }),

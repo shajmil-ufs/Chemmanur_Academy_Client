@@ -9,7 +9,7 @@ class PermissionsService {
   constructor(private router: Router) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (localStorage['Access_Token']) {
+    if (localStorage['Access_Token'] &&  localStorage['User_Type'] ) {
       return true;
     }
     else {

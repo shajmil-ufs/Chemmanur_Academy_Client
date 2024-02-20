@@ -14,5 +14,10 @@ export class AuthService {
 
     return this.http.post('Login/Login_Check',data);
   }
+  User_Login_Check(data){
+    console.log('data: ', data);
+
+    return this.http.post('Login/User_Login_Check',data);
+  }
 
 }

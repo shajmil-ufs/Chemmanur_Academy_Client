@@ -34,10 +34,9 @@ console.log('this.loginForm: ', this.loginForm);
       {
         console.log('success.token: ', success.token);
         localStorage.setItem("Access_Token", success.token);
-        localStorage.setItem("User_Type", success[0]?.User_Type);
-        console.log('localStorage: ', localStorage);
-        success[0]?.User_Type==1?
-this.router.navigateByUrl("/admin"):this.router.navigateByUrl("/user")
+        localStorage.setItem("User_Type", "1");
+        
+this.router.navigateByUrl("/admin")
       }
   }
 }

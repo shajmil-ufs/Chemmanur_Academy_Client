@@ -19,26 +19,47 @@ export class NavbarComponent {
   //   { label: 'Exams', link: 'admin/exam' ,action: '' },
   //   { label: 'Sign Out', link: '#', action: 'logout' }
   // ];
-  menuItems = [
-    { label: 'Dashboard', link: '/admin/exam', action: '' },
-    { label: 'Queston Bank', link: '/admin/exam', action: '' },
-    { label: 'Online Test', link: '/admin/exam', action: '' },
-    { label: 'PPT', link: '/admin/exam', action: '' },
-    { label: 'Messages', link: '/admin/exam', action: '' },
-    { label: 'Sign Out', link: '#', action: 'logout' }
-  ];
-  
+  menuItems:any = [];
+  user =localStorage.getItem('User_Type')
   constructor(
     private router: Router,
 
-) { }
+) { 
+ this.user=='1'?this.menuItems= [
+    { label: 'Dashboard', link: '/admin/exam', action: '' },
+    { label: 'Student', link: '/admin/student', action: '' },
+    { label: 'question', link: '/admin/question', action: '' },
+    { label: 'Department', link: '/admin/department', action: '' },
+    { label: 'PPT', link: '/admin/exam', action: '' },
+    { label: 'Messages', link: '/admin/exam', action: '' },
+    { label: 'Sign Out', link: '#', action: 'logout' }
+  ]:this.menuItems=[{ label: 'Dashboard', link: '/admin/exam', action: '' },
+  // { label: 'E-commerce', subItems: [
+  //   { label: 'Products', link: '#',action: '' },
+  //   { label: 'Billing', link: '#',action: '' },
+  //   { label: 'Invoice', link: '#',action: '' }
+  // ] },
+  { label: 'Student', link: '/admin/exam', action: '' },
+  { label: 'Online Test', link: '/admin/exam', action: '' },
+  { label: 'PPT', link: '/admin/exam', action: '' },
+  { label: 'Messages', link: '/admin/exam', action: '' },
+  { label: 'Sign Out', link: '#', action: 'logout' }]
+}
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
   logout(){
-    localStorage.clear()
-    this.router.navigateByUrl('auth')
 
+       
+                localStorage.clear();
+           
+                if(this.user=='2'){
+                    this.router.navigateByUrl('auth/user')
+
+                }else if(this.user=='1'){
+
+                    this.router.navigateByUrl('auth')
+                }
   }
   performAction(action: string) {
     

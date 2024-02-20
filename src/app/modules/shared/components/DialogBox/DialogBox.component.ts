@@ -33,6 +33,13 @@ export class DialogBox_Component implements OnInit {
       this.NoButton = "No";
       this.YesButton = "OK";
       this.Image_Url='/assets/img/Green_Tick.png';
+
+      this.lottieOptions = {
+        path: 'assets/lottie/success.json', // Set the path to your Lottie JSON file
+        autoplay: true,
+        loop: false
+      };
+
       //giphy.gif
       this.show=false;
     }
@@ -41,13 +48,19 @@ export class DialogBox_Component implements OnInit {
       this.YesButton = "Yes";
       this.Image_Url='/assets/img/Question_Mark.gif';
       this.show=true;
+      this.lottieOptions = {
+        path: 'assets/lottie/questionMark.json', // Set the path to your Lottie JSON file
+        autoplay: true,
+        loop: false
+      };
     }
     else if(this.showNo == "2" )
     {
-      this.NoButton = "No";
-      this.YesButton = "OK";
-      this.Image_Url='/assets/img/Red_Into.gif';
-      this.show=false;
+      this.lottieOptions = {
+        path: 'assets/lottie/error.json', // Set the path to your Lottie JSON file
+        autoplay: true,
+        loop: false
+      };
     }
     else if(this.showNo == "3" )
     {

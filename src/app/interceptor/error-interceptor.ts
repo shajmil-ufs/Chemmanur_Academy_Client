@@ -15,10 +15,18 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
             if ([401, 403].includes(err.status)) {
+                let user =localStorage.getItem('User_Type')
+                console.log('user: ', user);
                 localStorage.clear();
                 console.log('err: ', err?.error?.error);
-                this.router.navigateByUrl('auth')
+                if(user=='2'){
+                    this.router.navigateByUrl('auth/user')
 
+                }else if(user=='1'){
+
+                    this.router.navigateByUrl('auth')
+                }
+               
             }
 
             console.log('err?.error?: ', err?.error);

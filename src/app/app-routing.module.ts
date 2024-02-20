@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { assignGuard } from './modules/auth/guards/assign.guard';
 import { isAdminGuard } from './modules/auth/guards/is-admin.guard';
+import { isUserGuard } from './modules/auth/guards/is-user.guard';
 
 
 
@@ -23,6 +24,11 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
     canActivate: [AuthGuard,isAdminGuard],
+  } ,
+  {
+    path: 'user',
+    loadChildren: () => import('./modules/user/user.module').then((m) => m.UserModule),
+    canActivate: [AuthGuard,isUserGuard],
   } 
 
   // {
