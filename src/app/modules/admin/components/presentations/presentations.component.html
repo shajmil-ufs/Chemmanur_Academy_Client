@@ -1,0 +1,116 @@
+
+
+  
+
+
+
+  
+<section *ngIf="!Entry_View">
+    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" (click)="Create_New()">
+       Add Presentation 
+      </button>
+    
+    <div *ngFor="let ppt of presentations_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8">
+    <div class="flex justify-between">
+        <div style="width: 250px;">
+<div>
+
+    <span class="muted">
+        Name : 
+    </span>  {{ppt.Name}}
+</div>
+<div>
+
+    <span class="muted">
+        Department : 
+    </span>  {{ppt.Department_Name}}
+</div>
+<div class="pdf-container">
+    <pdf-viewer   style="width: 100%;" [style.height.px]="150" [fit-to-page]="true" [src]="filepath+ppt.Path" [autoresize]="true" [show-all]="false"
+        class="pdf-viewer"></pdf-viewer>
+</div>
+        </div>
+        <div>
+
+            <span (click)="Delete_presentations(ppt.PPT_ID,i)" class="material-symbols-outlined">
+                delete
+            </span>
+            <span (click)="Edit_presentations(ppt)" class="material-symbols-outlined">
+                edit
+            </span>
+        </div>
+    </div>
+
+
+    
+    </div></section>
+    <section *ngIf="Entry_View">
+        <button class="bg-blue-500
+         hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Close_Click()">
+            Back
+            
+           </button>
+           <form #presentationForm="ngForm" (ngSubmit)="Save_presentations()">
+            <div class="mb-4">
+              <label for="presentationName" class="block text-sm font-medium text-gray-700">Presentation Name</label>
+              <input type="text" id="presentationName" name="presentationName" [(ngModel)]="presentations_.Name" required
+                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            </div>
+            
+            <div class="mb-4">
+                <label for="file" class="block text-sm font-medium text-gray-700">Upload File</label>
+                <!-- Label to display filename -->
+                <label class="block mt-1 w-full  border  rounded-md border-gray-700  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 cursor-pointer">
+                    <!-- Display filename if available, otherwise display "Choose file" -->
+
+<div class="flex gap-6 ">
+
+    <div class="bg-slate-300 p-2 rounded-md ">
+        
+        Choose file
+    </div>
+    <div class="p-2 ">
+        
+        {{ presentations_.File_Name ? presentations_.File_Name : '' }}
+    </div>
+                    </div>
+                    <!-- File input element -->
+                    <input type="file" id="file" name="file" (change)="handleFileInput($event)" accept=".pdf,.ppt,.pptx" required
+                           class="hidden">
+                </label>
+            </div>
+            
+            
+            <div class="mb-4">
+              <label for="departmentId" class="block text-sm font-medium text-gray-700">Department</label>
+              <select id="Department_Id" name="Department_Id" [(ngModel)]="presentations_.Department_Id" required
+                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                <option [value]="dept.Department_Id" *ngFor="let dept of department_Data">{{dept?.Department_Name}}</option>
+              </select>
+            </div>
+            
+            <button type="submit"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              Add Presentation
+            </button>
+          </form>
+          <div id="outerContainer">
+            <div class="pdf-container">
+                <div *ngIf="isLoaded && presentations_.Path" style="text-align: center;">
+                    <button (click)="prevPage()" [disabled]="page === 1">Prev</button>
+                    <span>{{ page }} / {{ totalPages }}</span>
+                    <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+                  </div>
+                  
+                  <pdf-viewer                [src]="filepath+presentations_.Path"
+
+                              [original-size]="false"
+                              style="height: 500px; width: 600px;"
+                              [show-all]="false"
+                              [page]="page"
+                              (after-load-complete)="afterLoadComplete($event)"
+                  ></pdf-viewer>
+            </div>
+          </div>
+          
+    </section>

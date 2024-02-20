@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { departmentComponent } from './components/department/department.component';
 import { questionsComponent } from './components/questions/questions.component';
 import { studentComponent } from './components/student/student.component';
+import { presentationsComponent } from './components/presentations/presentations.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ component:questionsComponent
       {
         path: "student",
 component:studentComponent
+      },
+      {
+        path: "presentations",
+component:presentationsComponent
       },
   
       // {

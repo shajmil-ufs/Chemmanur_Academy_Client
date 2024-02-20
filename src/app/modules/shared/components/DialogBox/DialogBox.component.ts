@@ -14,8 +14,8 @@ export class DialogBox_Component implements OnInit {
   showNo: string;
   show: boolean;
   Heading: string;
-  NoButton: String;
-  YesButton: String;
+ NoButton = "No";
+ YesButton = "OK";
   Image_Url:string;
   constructor(
     public dialogRef: MatDialogRef<DialogBox_Component>,
@@ -66,8 +66,11 @@ export class DialogBox_Component implements OnInit {
     {
       this.NoButton = "No";
       this.YesButton = "OK";
-      this.Image_Url='/assets/img/White_Img.png';
-      this.show=false;
+      this.lottieOptions = {
+        path: 'assets/lottie/info.json', // Set the path to your Lottie JSON file
+        autoplay: true,
+        loop: false
+      };      this.show=false;
     }
    
     this.Heading = data.Heading;

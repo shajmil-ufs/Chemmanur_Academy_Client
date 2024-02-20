@@ -4,7 +4,7 @@ export const environment = {
 
 
 	BasePath: 'http://18.236.152.62:8080/',
-        FilePath:'https://darlscoapi.ufstech.co.in/uploads/',
+        FilePath:'https://ufsnabeelphotoalbum.s3.us-east-2.amazonaws.com/',
         NotificationPath:'https://darlsconotificationapi.ufstech.co.in/',
 
 

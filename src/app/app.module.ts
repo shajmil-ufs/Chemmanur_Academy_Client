@@ -22,7 +22,12 @@ export function playerFactory() {
   imports: [
     BrowserModule,
     SharedModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([], {
+  
+}),
+// RouterModule.forRoot([], {
+//   initialNavigation: 'enabledBlocking'                //research about this when this code comes project page is not get loaded
+// }), 
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

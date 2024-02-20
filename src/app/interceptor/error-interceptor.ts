@@ -36,7 +36,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                 const dialogRef = this.dialogBox.open(DialogBox_Component, {
                     panelClass: 'Dialogbox-Class',
                     data: { Message: err?.error?.error?.message, Type: "2" },
-                    width: '400px' // Set your desired width here
                   });
                   
             }

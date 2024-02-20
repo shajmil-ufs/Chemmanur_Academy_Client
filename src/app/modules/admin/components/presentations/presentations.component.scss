@@ -1,0 +1,8 @@
+
+.pdf-container {
+
+
+    ::ng-deep .ng2-pdf-viewer-container {
+        overflow: hidden !important;
+    }
+}

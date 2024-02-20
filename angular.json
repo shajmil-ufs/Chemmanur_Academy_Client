@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/chemmanur-academy-client",
+            "outputPath": "dist/Chemmanur_Academy_Client/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -47,7 +47,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -111,6 +111,73 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/Chemmanur_Academy_Client/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "Chemmanur_Academy_Client:build:development",
+              "serverTarget": "Chemmanur_Academy_Client:server:development"
+            },
+            "production": {
+              "browserTarget": "Chemmanur_Academy_Client:build:production",
+              "serverTarget": "Chemmanur_Academy_Client:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Chemmanur_Academy_Client:build:production",
+              "serverTarget": "Chemmanur_Academy_Client:server:production"
+            },
+            "development": {
+              "browserTarget": "Chemmanur_Academy_Client:build:development",
+              "serverTarget": "Chemmanur_Academy_Client:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

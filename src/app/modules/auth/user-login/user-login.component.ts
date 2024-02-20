@@ -36,6 +36,7 @@ console.log('this.loginForm: ', this.loginForm);
         console.log('success.token: ', success.token);
         localStorage.setItem("Access_Token", success.token);
         localStorage.setItem("User_Type","2");
+        localStorage.setItem("Student_Id",success[0].Student_Id);
         console.log('localStorage: ', localStorage);
 
 this.router.navigateByUrl("/user")

@@ -1,0 +1,65 @@
+
+
+<section *ngIf="!Entry_View">
+
+    <h2 class="">Choose A department</h2>
+    <div (click)="ShowQuestion(department?.Department_Id)"  *ngFor="let department of department_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8 cursor-pointer font-bold hover:bg-slate-400">
+    <div class="flex justify-between ">
+        <span>
+
+            {{department.Department_Name}}
+        </span>
+        
+    </div>
+
+
+    
+    </div></section>
+    <section *ngIf="Entry_View">
+        <button class="bg-blue-500
+        hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Close_Click()">
+           Back
+           
+          </button>
+        <div class="container mx-auto mt-8">
+            <div class="w-full  rounded overflow-hidden shadow-lg">
+              <div class="bg-gray-200 px-6 py-4">
+                <p class="text-gray-700 font-semibold text-lg">{{ student_question_bank_Data[0].Question_Text }}</p>
+              </div>
+              <div class="px-6 py-4">
+                <div class="grid grid-cols-1 gap-4">
+                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(1), 'bg-red-200': isOptionChosen(1)}">
+                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="1">
+                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option1 }}</span>
+                    </label>
+                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(2), 'bg-red-200': isOptionChosen(2)}">
+                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="2">
+                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option2 }}</span>
+                    </label>
+                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(3), 'bg-red-200': isOptionChosen(3)}">
+                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="3">
+                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option3 }}</span>
+                    </label>
+                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(4), 'bg-red-200': isOptionChosen(4)}">
+                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="4">
+                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option4 }}</span>
+                    </label>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+          <button *ngIf="!student_question_bank_.QuestionBank_Id" class="bg-blue-500
+          hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Save_student_question_bank()">
+             Submit
+             
+            </button>
+            <button *ngIf="student_question_bank_.QuestionBank_Id" class="bg-blue-500
+          hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="ShowQuestion(selectedDept)">
+             Next
+             
+            </button>
+
+      
+          
+    </section>

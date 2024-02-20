@@ -1,0 +1,54 @@
+
+
+  
+
+
+
+  
+<section *ngIf="!Entry_View">
+   
+    
+    <div *ngFor="let dept of department_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8" (click)="viewPPT(dept.Department_Id)">
+        {{dept.Department_Name}}
+
+
+    
+    </div></section>
+    <section *ngIf="Entry_View">
+       
+           <section *ngIf="!pdfPreview">
+            <button class="bg-blue-500
+            hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Close_Click()">
+               Back
+               
+              </button>
+             <div *ngFor="let ppt of presentations_Data" class="shadow-sm mt-5 border border-gray-500 border-solid p-8" (click)="ShowpdfPreview(ppt)">
+              {{ppt.Name}} 
+              
+            </div>
+          </section>
+          <div id="outerContainer" *ngIf="pdfPreview">
+            <button class="bg-blue-500
+         hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="pdfPreview=false">
+            Back
+            
+           </button>
+            <div class="pdf-container">
+                <div *ngIf="isLoaded && selectedpdf.Path" style="text-align: center;">
+                    <button (click)="prevPage()" [disabled]="page === 1">Prev</button>
+                    <span>{{ page }} / {{ totalPages }}</span>
+                    <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+                  </div>
+                  
+                  <pdf-viewer                [src]="filepath+selectedpdf.Path"
+
+                              [original-size]="false"
+                              style="height: 500px; width: 600px;"
+                              [show-all]="false"
+                              [page]="page"
+                              (after-load-complete)="afterLoadComplete($event)"
+                  ></pdf-viewer>
+            </div>
+          </div>
+          
+    </section>

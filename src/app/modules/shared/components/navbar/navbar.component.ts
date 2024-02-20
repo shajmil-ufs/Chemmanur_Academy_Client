@@ -21,16 +21,20 @@ export class NavbarComponent {
   // ];
   menuItems:any = [];
   user =localStorage.getItem('User_Type')
+  
   constructor(
     private router: Router,
 
-) { 
+) {  
+
+
+  // 1 for admin   2 for student
  this.user=='1'?this.menuItems= [
     { label: 'Dashboard', link: '/admin/exam', action: '' },
     { label: 'Student', link: '/admin/student', action: '' },
     { label: 'question', link: '/admin/question', action: '' },
     { label: 'Department', link: '/admin/department', action: '' },
-    { label: 'PPT', link: '/admin/exam', action: '' },
+    { label: 'PPT', link: '/admin/presentations', action: '' },
     { label: 'Messages', link: '/admin/exam', action: '' },
     { label: 'Sign Out', link: '#', action: 'logout' }
   ]:this.menuItems=[{ label: 'Dashboard', link: '/admin/exam', action: '' },
@@ -39,9 +43,9 @@ export class NavbarComponent {
   //   { label: 'Billing', link: '#',action: '' },
   //   { label: 'Invoice', link: '#',action: '' }
   // ] },
-  { label: 'Student', link: '/admin/exam', action: '' },
+  { label: 'Question Bank', link: '/user/question_bank', action: '' },
   { label: 'Online Test', link: '/admin/exam', action: '' },
-  { label: 'PPT', link: '/admin/exam', action: '' },
+  { label: 'PPT', link: '/user/ppt', action: '' },
   { label: 'Messages', link: '/admin/exam', action: '' },
   { label: 'Sign Out', link: '#', action: 'logout' }]
 }

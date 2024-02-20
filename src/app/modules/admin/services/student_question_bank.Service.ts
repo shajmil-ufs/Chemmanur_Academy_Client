@@ -28,6 +28,10 @@ Search_student_question_bank(student_question_bank_Name):Observable<any>
 {
 var Search_Data={'student_question_bank_Name':student_question_bank_Name}
  return this.http.get(environment.BasePath +'student_question_bank/Search_student_question_bank/',{params:Search_Data});}
+Search_student_question_bank_By_DeptId(department_id):Observable<any>
+{
+var Search_Data={'department_id':department_id}
+ return this.http.get(environment.BasePath +'student_question_bank/Search_student_question_bank_By_DeptId/',{params:Search_Data});}
 Delete_student_question_bank(student_question_bank_Id)
 {
  return this.http.get(environment.BasePath +'student_question_bank/Delete_student_question_bank/'+student_question_bank_Id);}
