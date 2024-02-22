@@ -6,6 +6,7 @@ import { departmentComponent } from './components/department/department.componen
 import { questionsComponent } from './components/questions/questions.component';
 import { studentComponent } from './components/student/student.component';
 import { presentationsComponent } from './components/presentations/presentations.component';
+import { ExamTypesComponent } from './components/exam-types/exam-types.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,10 @@ component:studentComponent
       {
         path: "presentations",
 component:presentationsComponent
+      },
+      {
+        path: "exam_types",
+component:ExamTypesComponent
       },
   
       // {

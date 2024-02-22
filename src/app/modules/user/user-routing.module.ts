@@ -4,6 +4,7 @@ import { UserComponent } from './user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { student_question_bankComponent } from './components/student_question_bank/student_question_bank.component';
 import { StudentpresentationsComponent } from './components/student-presentations/student_presentations.component';
+import { student_examsComponent } from './components/student_exams/student_exams.component';
 
 const routes: Routes = [ {
   path: "",
@@ -25,6 +26,10 @@ component:student_question_bankComponent
     {
       path: "ppt",
 component:StudentpresentationsComponent
+    },
+    {
+      path: "student-exam",
+component:student_examsComponent
     },
  
 

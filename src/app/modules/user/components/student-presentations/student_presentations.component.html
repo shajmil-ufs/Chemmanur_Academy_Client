@@ -8,7 +8,7 @@
 <section *ngIf="!Entry_View">
    
     
-    <div *ngFor="let dept of department_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8" (click)="viewPPT(dept.Department_Id)">
+    <div *ngFor="let dept of department_Data;let i = index"  class="shadow-sm mt-5 border border-gray-500 border-solid p-8 cursor-pointer font-bold hover:bg-slate-400" (click)="viewPPT(dept.Department_Id)">
         {{dept.Department_Name}}
 
 

@@ -27,6 +27,7 @@ export class DialogBox_Component implements OnInit {
       };
     this.message = data.Message;
     this.showNo = data.Type;
+    console.log(' this.showNo: ',  this.showNo);
     this.showNo= this.showNo.toString();
      
     if (this.showNo == "false" || this.showNo == "False") {

@@ -36,3 +36,4 @@ Get_exam_questions(exam_questions_Id)
  return this.http.get(environment.BasePath +'exam_questions/Get_exam_questions/'+exam_questions_Id);}
 }
 
+

@@ -35,7 +35,7 @@ export class NavbarComponent {
     { label: 'question', link: '/admin/question', action: '' },
     { label: 'Department', link: '/admin/department', action: '' },
     { label: 'PPT', link: '/admin/presentations', action: '' },
-    { label: 'Messages', link: '/admin/exam', action: '' },
+    { label: 'exam types', link: '/admin/exam_types', action: '' },
     { label: 'Sign Out', link: '#', action: 'logout' }
   ]:this.menuItems=[{ label: 'Dashboard', link: '/admin/exam', action: '' },
   // { label: 'E-commerce', subItems: [
@@ -44,7 +44,7 @@ export class NavbarComponent {
   //   { label: 'Invoice', link: '#',action: '' }
   // ] },
   { label: 'Question Bank', link: '/user/question_bank', action: '' },
-  { label: 'Online Test', link: '/admin/exam', action: '' },
+  { label: 'Online Test', link: '/user/student-exam', action: '' },
   { label: 'PPT', link: '/user/ppt', action: '' },
   { label: 'Messages', link: '/admin/exam', action: '' },
   { label: 'Sign Out', link: '#', action: 'logout' }]

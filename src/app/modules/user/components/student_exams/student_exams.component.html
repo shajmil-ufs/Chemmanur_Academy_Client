@@ -1,0 +1,109 @@
+
+
+
+<section *ngIf="!Entry_View">
+<section *ngIf="student_exams_.Exam_Id">
+
+
+    <h2 class="">Choose A department</h2>
+    <div  (click)="ShowQuestion(department?.Department_Id)"  *ngFor="let department of department_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8 cursor-pointer font-bold hover:bg-slate-400">
+        <div class="flex justify-between ">
+            <span>
+                
+                {{department.Department_Name}}
+            </span>
+            
+        </div>
+        
+        
+        
+    </div>
+</section>
+<section  *ngIf="!student_exams_.Exam_Id" >
+
+
+    <div *ngFor="let examType of examTypes; let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8">
+        <div class="flex justify-between" (click)="student_exams_.Exam_Id=examType.Exam_Id">
+            <span>
+                {{ examType.Exam_Name }}
+            </span>
+           
+        </div>
+    </div>
+</section>
+    
+
+</section>
+<section *ngIf="Entry_View">
+    <button class="bg-blue-500
+        hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Close_Click()">
+           Back
+           
+          </button>
+
+  
+<section *ngIf="!student_exams_.Student_Exam_Id">
+
+  
+  <div *ngIf="student_exams_Data && student_exams_Data.length > 0; ">
+    <div class="container mx-auto mt-8">
+      <div class="w-full rounded overflow-hidden shadow-lg">
+        <div class="bg-gray-200 px-6 py-4">
+               
+                  <p class="text-gray-700 font-semibold text-lg">{{ student_exams_Data[currentQuestionIndex].Question_Text }}</p>
+                </div>
+                <div class="px-6 py-4">
+                  <div class="grid grid-cols-1 gap-4">
+                    <label *ngFor="let option of [student_exams_Data[currentQuestionIndex].Option1, student_exams_Data[currentQuestionIndex].Option2, student_exams_Data[currentQuestionIndex].Option3, student_exams_Data[currentQuestionIndex].Option4]; let i = index" class="flex items-center cursor-pointer">
+                      <input 
+                          type="radio" 
+                          class="form-radio h-5 w-5 text-indigo-600" 
+                          name="question{{ student_exams_Data[currentQuestionIndex].Question_Id }}" 
+                          [value]="i + 1" 
+                          [checked]="isOptionSelected(i + 1,student_exams_Data[currentQuestionIndex].Question_Id)"
+                          (change)="selectOption(i + 1)">
+                      <span class="ml-2 text-gray-800">{{ option }}</span>
+                  </label>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="mt-4 flex gap-5">
+              <button *ngIf="currentQuestionIndex < student_exams_Data.length - 1 && currentQuestionIndex !=0 " (click)="currentQuestionIndex=currentQuestionIndex-1">Prev</button>
+              <button *ngIf="currentQuestionIndex < student_exams_Data.length - 1" (click)="currentQuestionIndex=currentQuestionIndex+1">Next</button>
+              <button *ngIf="currentQuestionIndex == student_exams_Data.length - 1" (click)="Save_student_exams()">Submit</button>
+            </div>
+          </div>
+        </section>
+        <section *ngIf="student_exams_.Student_Exam_Id">
+          <p>Marks Obtained: {{ this.student_exams_.Mark_Obtained }} / {{ this.student_exams_.Total_Marks }}</p>
+  
+          <!-- Determine if the student has passed and display message accordingly -->
+          <div *ngIf="this.student_exams_.passed === 1; else failed">
+            <p style="color: green;">Congratulations! You have passed the exam.</p>
+          </div>
+          <ng-template #failed>
+            <p style="color: red;">Sorry, you have not passed the exam.</p>
+          </ng-template>
+          
+  
+<!-- <div style="width: 300px; border: 1px solid black;">
+  <div [ngStyle]="getBarStyles()">
+    {{ ((this.student_exams_.Mark_Obtained / this.student_exams_.Total_Marks) * 100) | number:'1.1-1' }}%
+  </div>
+</div> -->
+<div role="progressbar" 
+     aria-valuemin="0" 
+     aria-valuemax="100"
+     [style.--value]="getBarStyles()">
+</div>
+
+
+        </section>
+          
+           
+          
+          
+    </section>

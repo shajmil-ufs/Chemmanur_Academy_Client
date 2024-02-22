@@ -34,5 +34,10 @@ Delete_student_exams(student_exams_Id)
 Get_student_exams(student_exams_Id)
 {
  return this.http.get(environment.BasePath +'student_exams/Get_student_exams/'+student_exams_Id);}
+ Search_student_exams_questions(dept_Id,exam_type)
+ {
+  return this.http.get(environment.BasePath +'student_exams/Search_student_exams_questions/'+exam_type+'/'+dept_Id);
+ 
+ }
 }
 
