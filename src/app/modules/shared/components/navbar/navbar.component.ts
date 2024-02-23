@@ -36,7 +36,9 @@ export class NavbarComponent {
     { label: 'Department', link: '/admin/department', action: '' },
     { label: 'PPT', link: '/admin/presentations', action: '' },
     { label: 'exam types', link: '/admin/exam_types', action: '' },
-    { label: 'Sign Out', link: '#', action: 'logout' }
+    { label: 'Eligibility Criteria', link: '/admin/eligibility_criteria', action: '' },
+    { label: 'Sign Out', link: '#', action: 'logout' },
+   
   ]:this.menuItems=[{ label: 'Dashboard', link: '/admin/exam', action: '' },
   // { label: 'E-commerce', subItems: [
   //   { label: 'Products', link: '#',action: '' },

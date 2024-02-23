@@ -1,0 +1,30 @@
+
+  <section *ngIf="Entry_View">
+
+    <form (ngSubmit)="saveeligibilityCriteria()">
+      <div class="mb-4">
+        <label for="Minimum_No_Of_Exam" class="block text-sm font-medium text-gray-700">Minimum No Of Exam</label>
+        <input type="text" id="Minimum_No_Of_Exam" name="Minimum_No_Of_Exam" [(ngModel)]="eligibilityCriteria.Minimum_No_Of_Exam" required
+               class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+      </div>
+  
+      <div class="mb-4">
+        <label for="Minimum_No_Of_Pass" class="block text-sm font-medium text-gray-700">Minimum No Of Pass</label>
+        <input type="number" id="Minimum_No_Of_Pass" name="Minimum_No_Of_Pass" [(ngModel)]="eligibilityCriteria.Minimum_No_Of_Pass"
+               class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+      </div>
+  
+      <div class="mb-4">
+        <label for="Average_Mark" class="block text-sm font-medium text-gray-700">Average Mark</label>
+        <input type="number" id="Average_Mark" name="Average_Mark" [(ngModel)]="eligibilityCriteria.Average_Mark"
+               class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+      </div>
+  
+  
+      <button type="submit"
+              class="hover:bg-indigo-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+        Add Eligibility Criteria
+      </button>
+    </form>
+  </section>
+  
