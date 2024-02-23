@@ -7,6 +7,7 @@ import { questionsComponent } from './components/questions/questions.component';
 import { studentComponent } from './components/student/student.component';
 import { presentationsComponent } from './components/presentations/presentations.component';
 import { ExamTypesComponent } from './components/exam-types/exam-types.component';
+import { Eligibility_CriteriaComponent } from './components/eligibility_criteria/eligibility_criteria.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,11 @@ component:presentationsComponent
       {
         path: "exam_types",
 component:ExamTypesComponent
+      },
+
+      {
+        path: "eligibility_criteria",
+component:Eligibility_CriteriaComponent
       },
   
       // {

@@ -10,12 +10,13 @@ import { questionsComponent } from './components/questions/questions.component';
 import { studentComponent } from './components/student/student.component';
 import { presentationsComponent } from './components/presentations/presentations.component';
 import { ExamTypesComponent } from './components/exam-types/exam-types.component';
+import { Eligibility_CriteriaComponent } from './components/eligibility_criteria/eligibility_criteria.component';
 
 @NgModule({
   declarations: [
     AddUserComponent,departmentComponent,
     AdminComponent,questionsComponent,
-    studentComponent,presentationsComponent, ExamTypesComponent
+    studentComponent,presentationsComponent, ExamTypesComponent,Eligibility_CriteriaComponent
   ],
   imports: [
     CommonModule,
