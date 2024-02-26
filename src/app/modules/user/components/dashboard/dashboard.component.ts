@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Eligibility_Criteria } from 'src/app/Model/eligibility_criteria';
 import { student_exams } from 'src/app/Model/student_exams';
+import { carousel_Service } from 'src/app/modules/admin/services/carousel.Service';
 import { Eligibility_CriteriaService } from 'src/app/modules/admin/services/eligibility_criteria.Service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class DashboardComponent {
 
   student_exams: student_exams[];
   student_exams_: any;
-
+  Banner: any={};
   eligibilityCriteriaNameSearch: string;
   Entry_View = true;
   editIndex: number;
@@ -29,63 +31,83 @@ export class DashboardComponent {
   Student_Id_: number;
   Eligibility_Name:string;
   Eligibility_Id:number;
+  studentEligibity: any={};
+  filepath: any;
 
   constructor(
     private eligibilityCriteriaService: Eligibility_CriteriaService,
+    private carousel_Services:carousel_Service,
     private route: ActivatedRoute,
     private router: Router,
     // public dialog: MatDialog
-  ) { }
+  ) {
+
+    this.filepath=environment.FilePath
+
+   }
 
   ngOnInit() {
-    this.Student_Id_=298;
+    this.clear_Banner()
+
+    const studentIdFromLocalStorage = localStorage.getItem('Student_Id');
+    if (studentIdFromLocalStorage !== null) {
+      this.Student_Id_ = parseInt(studentIdFromLocalStorage);
+    }
     this.pageLoad();
   }
 
   pageLoad() {
     this.isLoading = true;
+    this.Search_carousel()
     this.Student_Exam_Eligibility_Check();
-    this.searcheligibilityCriteria()
+
   }
 
+  clear_Banner(){
+    this.Banner={
+      id:0,
+      File_Name:'',
+      fileChanged:false,
+      file:'',
+      FilePath:''
+    }
+  }
 
-  cleareligibilityCriteria() {
-    this.eligibilityCriteria.Eligibility_Criteria_Id = 0;
-    this.eligibilityCriteria.Minimum_No_Of_Exam = 0;
-    this.eligibilityCriteria.Minimum_No_Of_Pass = 0;
-    this.eligibilityCriteria.Average_Mark = 0;
+  Search_carousel(){
+    this.isLoading = true;
+    this.carousel_Services.Search_carousel('').subscribe(res=>{
+      console.log('res: ', res);
+      if(res[0][0])
+      {
+         res=res[0][0]
+   
+  
+         this.Banner.id=res.carousel_Id
+         this.Banner.filepath=res.path
+         this.Banner.File_Name=res.name
+         console.log('  this.Banner: ',   this.Banner);
+         this.isLoading = false;
+  
+      }else{
+        this.isLoading = false;
+
+      }
+   
+     })        
   }
 
   Student_Exam_Eligibility_Check() {
     this.isLoading = true;
-    debugger
+    
     this.eligibilityCriteriaService.Student_Exam_Eligibility_Check(this.Student_Id_).subscribe(
       
       (data: any[]) => {
-        debugger
-        console.log('data: ', data[0]);
-        this.student_exams = data[0];
-        this.student_exams_=this.student_exams[0];
-        this.isLoading = false;
-      },
-      (error) => {
-        this.isLoading = false;
-      }
-    );
-  }
-  searcheligibilityCriteria() {
-    this.isLoading = true;
-    debugger
-    this.eligibilityCriteriaService.Search_Eligibility_Criteria('').subscribe(
-      
-      (data: any[]) => {
-        debugger
-        console.log('data: ', data[0]);
-        this.eligibilityCriterias = data[0];
-        this.eligibilityCriteria= this.eligibilityCriterias[0];
+        
+   this.studentEligibity=data[0][0]
+   console.log('  this.studentEligibity: ',   this.studentEligibity);
 
-        this.Check_Eligibility();
-       
+
+
         this.isLoading = false;
       },
       (error) => {
@@ -94,26 +116,7 @@ export class DashboardComponent {
     );
   }
 
-  Check_Eligibility()
-  {
 
-    debugger
-   if( this.student_exams_.StudentAverage_Mark >= this.eligibilityCriteria.Average_Mark &&
-      this.student_exams_.No_Of_Exam >= this.eligibilityCriteria.Minimum_No_Of_Exam 
-      //  && this.student_exams_.StudentAverage_Mark >= this.eligibilityCriteria.Average_Mark 
-       )
-   {
-    this.Eligibility_Id =1;
-    this.Eligibility_Name ="You are eligible for the attendant exam"
-   }
-   else
-   {
-    this.Eligibility_Id =2;
-    this.Eligibility_Name ="You are not eligible for the attendant exam"
-   }
-
-  }
- 
 
  
 

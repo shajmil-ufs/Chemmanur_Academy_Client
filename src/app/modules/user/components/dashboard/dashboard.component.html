@@ -1,5 +1,46 @@
-<p>dashboard works!</p>
-<div *ngIf="Eligibility_Id==1"><h1  style="color: green">{{ Eligibility_Name }}</h1></div>
-<div *ngIf="Eligibility_Id==2" ><h1 style="color: red">{{ Eligibility_Name }}</h1></div>
 
 
+
+<main class=" h-screen">
+    
+<div *ngIf="!this.isLoading">
+    <section>           <img [src]="filepath+Banner.filepath" alt="" srcset="">
+    </section>
+    <section>
+        
+        <div *ngIf="studentEligibity.No_Of_Exam >= studentEligibity.Minimum_No_Of_Exam_ && studentEligibity.Eligibility === 1" class="bg-green-500 text-white text-center py-4">
+            <p class="text-lg font-semibold">You are eligible</p>
+          </div>
+          <div *ngIf="studentEligibity.No_Of_Exam  >= studentEligibity.Minimum_No_Of_Exam_ && studentEligibity.Eligibility !== 1" class="bg-red-200 text-red-800 text-center py-4">
+            <p class="text-lg font-semibold">You are not eligible</p>
+          </div>
+          
+          
+      </section>
+    <section class="mt-5 border p-5">   
+        <span class=" border-b border-gray-300"> Test Result</span>
+        <div class="flex mt-3 items-center">
+
+    
+            <div class="flex gap-5 flex-wrap">
+              <div class="card gradient-red">
+                <h2 class="text-white text-lg font-semibold mb-2">Total Attend</h2>
+                <p class="text-white">{{studentEligibity.No_Of_Exam||0}}</p>
+              </div>
+              <div class="card gradient-green">
+                <h2 class="text-white text-lg font-semibold mb-2">Passed</h2>
+                <p class="text-white">{{studentEligibity.No_Of_Pass ||0}}</p>
+              </div>
+              <div class="card gradient-blue">
+                <h2 class="text-white text-lg font-semibold mb-2">Average Mark</h2>
+                <p class="text-white">{{studentEligibity.StudentAverage_Mark || 0}}</p>
+              </div>
+            </div>
+          </div>
+    </section>
+
+      
+    
+</div>
+
+</main>

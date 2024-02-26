@@ -50,6 +50,7 @@ export class Eligibility_CriteriaComponent implements OnInit {
     return index;
   }
   cleareligibilityCriteria() {
+    console.log(' this.eligibilityCriteria: ',  this.eligibilityCriteria);
     this.eligibilityCriteria.Eligibility_Criteria_Id = 0;
     this.eligibilityCriteria.Minimum_No_Of_Exam = 0;
     this.eligibilityCriteria.Minimum_No_Of_Pass = 0;
@@ -64,18 +65,24 @@ export class Eligibility_CriteriaComponent implements OnInit {
       (data: any[]) => {
         debugger
         console.log('data: ', data[0]);
+        console.log('data: ', data);
         this.eligibilityCriterias = data[0];
-        this.eligibilityCriteria= this.eligibilityCriterias[0];
+        console.log('this.eligibilityCriterias : ', this.eligibilityCriterias );
+if(this.eligibilityCriterias.length){
+
+  this.eligibilityCriteria= this.eligibilityCriterias[0];
+}
+        console.log('  this.eligibilityCriteria: ',   this.eligibilityCriteria);
         this.totalEntries = this.eligibilityCriterias.length;
-        if (this.eligibilityCriterias.length === 0) {
+        if (this.eligibilityCriterias.length ==0) {
           this.isLoading = false;
-          this.openDialog('No details found', '3');
+          // this.openDialog('No details found', '3');
         }
         this.isLoading = false;
       },
       (error) => {
         this.isLoading = false;
-        this.openDialog('Error occurred', '2');
+        ;
       }
     );
   }
@@ -98,13 +105,13 @@ export class Eligibility_CriteriaComponent implements OnInit {
               this.openDialog('Deleted', 'false');
             } else {
               this.isLoading = false;
-              this.openDialog('Error occurred', '2');
+              ;
             }
             this.isLoading = false;
           },
           (error) => {
             this.isLoading = false;
-            this.openDialog('Error occurred', '2');
+            ;
           }
         );
       }
@@ -125,13 +132,13 @@ export class Eligibility_CriteriaComponent implements OnInit {
           this.openDialog('Saved', 'false');
         } else {
           this.isLoading = false;
-          this.openDialog('Error occurred', '2');
+          ;
         }
         this.isLoading = false;
       },
       (error) => {
         this.isLoading = false;
-        this.openDialog('Error occurred', '2');
+        ;
       }
     );
   }

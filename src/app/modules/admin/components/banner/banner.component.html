@@ -1,0 +1,32 @@
+<div class="mb-4">
+    <label for="file" class="block text-sm font-medium text-gray-700">Upload File</label>
+    <!-- Label to display filename -->
+    <label class="block mt-1 w-full  border  rounded-md border-gray-700  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 cursor-pointer">
+        <!-- Display filename if available, otherwise display "Choose file" -->
+
+<div class="flex gap-6 ">
+
+<div class="bg-slate-300 p-2 rounded-md ">
+
+Choose file
+</div>
+<div class="p-2 ">
+
+{{ Banner.File_Name ?Banner.File_Name : '' }}
+</div>
+        </div>
+        <!-- File input element -->
+        <input type="file" id="file" name="file" (change)="handleFileInput($event)" accept="image/*" required class="hidden">
+
+    </label>
+</div>
+<div>
+    <button mat-button [disabled]="!Banner.fileChanged" (click)="save_Banner()">Save</button>
+</div>
+<section class="mt-5 border p-5">
+
+    <h1>
+        Current Banner
+    </h1>
+    <img [src]="filepath+Banner.filepath" alt="" srcset="">
+</section>

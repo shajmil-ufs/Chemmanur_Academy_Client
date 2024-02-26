@@ -99,9 +99,7 @@ this.issLoading=false;
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
 Delete_department(department_Id,index)
@@ -126,17 +124,13 @@ const dialogRef = this.dialogBox.open
 else
 {
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
 }
 this.issLoading=false;
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
  });
@@ -155,7 +149,7 @@ if(Number(Save_status[0].department_Id_)>0)
 const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Saved',Type:"false"}});
 }
 else{
-const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Error Occured',Type:"2"}});
+
 }
 this.issLoading=false;
  },

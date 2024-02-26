@@ -23,11 +23,15 @@ export class TokenInterceptor implements HttpInterceptor {
         // public userData: UserData
     ) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const Student_Id = localStorage.getItem('Student_Id');
         const token = localStorage.getItem('Access_Token');
+
         if (token) {
             request = request.clone({
                 setHeaders: {
-                    'authorization': 'Bearer ' + token
+                    'authorization': 'Bearer ' + token,
+                    'Student_Id': Student_Id ? Student_Id.toString() : ''  // Convert Student_Id to string if not null
+
                 }
             });
         }

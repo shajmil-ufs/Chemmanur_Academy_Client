@@ -30,7 +30,7 @@ export class NavbarComponent {
 
   // 1 for admin   2 for student
  this.user=='1'?this.menuItems= [
-    { label: 'Dashboard', link: '/admin/exam', action: '' },
+    { label: 'Banner', link: '/admin/Banner', action: '' },
     { label: 'Student', link: '/admin/student', action: '' },
     { label: 'question', link: '/admin/question', action: '' },
     { label: 'Department', link: '/admin/department', action: '' },
@@ -48,7 +48,6 @@ export class NavbarComponent {
   { label: 'Question Bank', link: '/user/question_bank', action: '' },
   { label: 'Online Test', link: '/user/student-exam', action: '' },
   { label: 'PPT', link: '/user/ppt', action: '' },
-  { label: 'Messages', link: '/admin/exam', action: '' },
   { label: 'Sign Out', link: '#', action: 'logout' }]
 }
   toggleMenu() {

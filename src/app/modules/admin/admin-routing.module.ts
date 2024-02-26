@@ -8,13 +8,14 @@ import { studentComponent } from './components/student/student.component';
 import { presentationsComponent } from './components/presentations/presentations.component';
 import { ExamTypesComponent } from './components/exam-types/exam-types.component';
 import { Eligibility_CriteriaComponent } from './components/eligibility_criteria/eligibility_criteria.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 
 const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "dash",
+    redirectTo: "student",
   },
   {
     path:'',
@@ -32,7 +33,7 @@ component:AddUserComponent
         path: "department",
 component:departmentComponent
       },
-      {
+      { 
         path: "question",
 component:questionsComponent
       },
@@ -52,6 +53,10 @@ component:ExamTypesComponent
       {
         path: "eligibility_criteria",
 component:Eligibility_CriteriaComponent
+      },
+      {
+        path: "Banner",
+component:BannerComponent
       },
   
       // {

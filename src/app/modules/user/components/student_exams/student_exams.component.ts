@@ -141,7 +141,7 @@ if(Number(Save_status[0].studentExamId)>0)
 const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Saved',Type:"false"}});
 }
 else{
-const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Error Occured',Type:"2"}});
+
 }
 this.issLoading=false;
  },
@@ -169,9 +169,7 @@ this.issLoading=false;
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
 ShowQuestion(dept_Id){
@@ -204,9 +202,7 @@ this.currentQuestionIndex=0
      },
      Rows => { 
     this.issLoading=false;
-    const dialogRef = this.dialogBox.open
-    ( DialogBox_Component, {panelClass:'Dialogbox-Class'
-    ,data:{Message:'Error Occured',Type:"2"}});
+    ;
      });
 }
 isOptionCorrect(optionNumber: number): boolean {

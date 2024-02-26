@@ -75,7 +75,7 @@ export class ExamTypesComponent implements OnInit {
       },
       (error) => {
         this.isLoading = false;
-        this.openDialog('Error occurred', '2');
+        ;
       }
     );
   }
@@ -96,13 +96,13 @@ export class ExamTypesComponent implements OnInit {
               this.openDialog('Deleted', 'false');
             } else {
               this.isLoading = false;
-              this.openDialog('Error occurred', '2');
+              ;
             }
             this.isLoading = false;
           },
           (error) => {
             this.isLoading = false;
-            this.openDialog('Error occurred', '2');
+            ;
           }
         );
       }
@@ -120,13 +120,13 @@ export class ExamTypesComponent implements OnInit {
           this.openDialog('Saved', 'false');
         } else {
           this.isLoading = false;
-          this.openDialog('Error occurred', '2');
+          ;
         }
         this.isLoading = false;
       },
       (error) => {
         this.isLoading = false;
-        this.openDialog('Error occurred', '2');
+        ;
       }
     );
   }

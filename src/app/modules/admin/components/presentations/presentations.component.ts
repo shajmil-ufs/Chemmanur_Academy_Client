@@ -114,9 +114,7 @@ this.issLoading=false;
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
 Delete_presentations(presentations_Id,index)
@@ -140,17 +138,13 @@ const dialogRef = this.dialogBox.open
 else
 {
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
 }
 this.issLoading=false;
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
  });
@@ -181,7 +175,7 @@ this.Close_Click()
 this.Clr_presentations()
 }
 else{
-const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Error Occured',Type:"2"}});
+
 }
 this.issLoading=false;
  },
@@ -208,9 +202,7 @@ this.department_Service_.Search_department('').subscribe(Rows => {
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
 handleFileInput(event: any): void {

@@ -1,5 +1,5 @@
 
-  <section *ngIf="Entry_View">
+  <section *ngIf="Entry_View && !isLoading">
 
     <form (ngSubmit)="saveeligibilityCriteria()">
       <div class="mb-4">

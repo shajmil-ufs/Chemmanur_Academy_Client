@@ -26,6 +26,7 @@ export class DialogBox_Component implements OnInit {
         loop: false
       };
     this.message = data.Message;
+    console.log('  this.message: ',   this.message);
     this.showNo = data.Type;
     console.log(' this.showNo: ',  this.showNo);
     this.showNo= this.showNo.toString();

@@ -103,9 +103,7 @@ this.issLoading=false;
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
 
@@ -153,9 +151,7 @@ this.department_Service_.Search_department('').subscribe(Rows => {
  },
  Rows => { 
 this.issLoading=false;
-const dialogRef = this.dialogBox.open
-( DialogBox_Component, {panelClass:'Dialogbox-Class'
-,data:{Message:'Error Occured',Type:"2"}});
+;
  });
 }
 
