@@ -13,6 +13,7 @@ import { carousel_Service } from '../../services/carousel.Service';
 export class BannerComponent  implements OnInit{
   filepath: string;  File_Name:string=''
   fileChanged: boolean=false;
+  isLoading:boolean=false
   Banner: any={};
   constructor(  private route: ActivatedRoute, private router: Router,public dialogBox: MatDialog,private carousel_Services:carousel_Service) { 
     this.filepath=environment.FilePath
@@ -32,6 +33,7 @@ clear_Banner(){
   }
 }
 Search_carousel(){
+  this.isLoading=true
   this.carousel_Services.Search_carousel('').subscribe(res=>{
     console.log('res: ', res);
     if(res[0][0])
@@ -46,7 +48,8 @@ Search_carousel(){
 
 
     }
- 
+    this.isLoading=false
+
    })        
 }
   handleFileInput(event: any): void {
@@ -70,6 +73,7 @@ Search_carousel(){
     }
 }
 save_Banner(){
+  this.isLoading=true
   this.carousel_Services.uploadFile(  this.Banner.file).then(
     res=>{
         console.log('res: ', res);
@@ -78,7 +82,10 @@ save_Banner(){
             this.Banner.FilePath =res['key']
             console.log('res: ', res);
             this.carousel_Services.Save_carousel(this.Banner).subscribe(res=>{
-              this.Search_carousel()            })        }
+              this.Search_carousel()        
+            
+            
+            })        }
     })
 
 }

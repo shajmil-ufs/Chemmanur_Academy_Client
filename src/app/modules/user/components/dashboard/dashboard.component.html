@@ -4,7 +4,10 @@
 <main class=" h-screen">
     
 <div *ngIf="!this.isLoading">
-    <section>           <img [src]="filepath+Banner.filepath" alt="" srcset="">
+    <section>           <img [src]="filepath+Banner.filepath" style="  height: 450px;
+      width: 100%;
+      object-fit: contain;
+      " alt="" srcset="">
     </section>
     <section>
         

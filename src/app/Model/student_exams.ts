@@ -8,6 +8,7 @@ Start_Time:string;
 End_Time:string;
 Mark_Obtained:number;
 Total_Marks:number;
+Duration:number
 passed:number;
 constructor(values: Object = {})  
 {

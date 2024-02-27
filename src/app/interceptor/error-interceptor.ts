@@ -19,6 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
+            console.log('err: ', err);
             if ([401, 403].includes(err.status)) {
                 let user = localStorage.getItem('User_Type')
                 localStorage.clear();
@@ -30,7 +31,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
 
             // Extract error message
-            const errorMessage = err?.error?.error?.message || 'An error occurred';
+            const errorMessage = err?.error?.error?.message ||err?.error?.message|| 'An error occurred';
+            console.log('errorMessage: ', errorMessage);
 
             // Push the error message to the error subject
             this.errorSubject.next(errorMessage);

@@ -45,54 +45,88 @@
             Back
             
            </button>
-    
-           <form #questionForm="ngForm" (ngSubmit)="Save_questions()">
-            <div class="mb-4">
-              <label for="questionText" class="block text-sm font-medium text-gray-700">Question Text</label>
-              <input type="text" id="questionText" name="questionText" [(ngModel)]="questions_.Question_Text" required
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+           <div class="flex gap-5 mb-6 mt-2">
+
+             <input type="radio" id="individual" name="formType" value="individual" [(ngModel)]="formType">
+             <label for="individual">Individual</label>
+             
+             <input type="radio" id="bulk" name="formType" value="bulk" [(ngModel)]="formType">
+             <label for="bulk">bulk</label>
             </div>
-            
-            <div class="mb-4">
-              <label for="option1" class="block text-sm font-medium text-gray-700">Option 1</label>
-              <input type="text" id="option1" name="option1" [(ngModel)]="questions_.Option1" required
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
-              <label for="option2" class="block text-sm font-medium text-gray-700">Option 2</label>
-              <input type="text" id="option2" name="option2" [(ngModel)]="questions_.Option2" required
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
-              <label for="option3" class="block text-sm font-medium text-gray-700">Option 3</label>
-              <input type="text" id="option3" name="option3" [(ngModel)]="questions_.Option3" required
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
-              <label for="option4" class="block text-sm font-medium text-gray-700">Option 4</label>
-              <input type="text" id="option4" name="option4" [(ngModel)]="questions_.Option4" required
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
-              <label for="correctAnswer" class="block text-sm font-medium text-gray-700">Correct Answer</label>
-              <select id="correctAnswer" name="correctAnswer" [(ngModel)]="questions_.Correct_Answer" required
-                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-                <option value="4">Option 4</option>
-              </select>
-            </div>
-            
+           
+           <div *ngIf="formType === 'individual'">
+            <form #questionForm="ngForm">
+              <div class="mb-4">
+                <label for="questionText" class="block text-sm font-medium text-gray-700">Question Text</label>
+                <input type="text" id="questionText" name="questionText" [(ngModel)]="questions_Array[0].Question_Text" required
+                       class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
+              <div class="mb-4">
+                <label for="option1" class="block text-sm font-medium text-gray-700">Option 1</label>
+                <input type="text" id="option1" name="option1" [(ngModel)]="questions_Array[0].Option1" required
+                       class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
+              <div class="mb-4">
+                <label for="option2" class="block text-sm font-medium text-gray-700">Option 2</label>
+                <input type="text" id="option2" name="option2" [(ngModel)]="questions_Array[0].Option2" required
+                       class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
+              <div class="mb-4">
+                <label for="option3" class="block text-sm font-medium text-gray-700">Option 3</label>
+                <input type="text" id="option3" name="option3" [(ngModel)]="questions_Array[0].Option3" required
+                       class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
+              <div class="mb-4">
+                <label for="option4" class="block text-sm font-medium text-gray-700">Option 4</label>
+                <input type="text" id="option4" name="option4" [(ngModel)]="questions_Array[0].Option4" required
+                       class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
+              <div class="mb-4">
+                <label for="correctAnswer" class="block text-sm font-medium text-gray-700">Correct Answer</label>
+                <select id="correctAnswer" name="correctAnswer" [(ngModel)]="questions_Array[0].Correct_Answer" required
+                        class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                  <option value="4">Option 4</option>
+                </select>
+              </div>
+              
+              <div class="mb-4">
+                <label for="departmentId" class="block text-sm font-medium text-gray-700">Department </label>
+               
+  
+                       <select id="Department_Id" name="Department_Id"  [(ngModel)]="questions_Array[0].Department_Id" required
+                       class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                 <option [value]="dept.Department_Id"  *ngFor="let dept of department_Data">{{dept?.Department_Name}}</option>
+           
+               </select>
+  
+  
+  
+              </div>
+              
+              <div class="mb-4">
+                <label for="answerDescription" class="block text-sm font-medium text-gray-700">Answer Description</label>
+                <textarea id="answerDescription" name="answerDescription" [(ngModel)]="questions_Array[0].Answer_Description"
+                          class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"></textarea>
+              </div>
+           
+            </form>
+           </div>
+           
+           <div *ngIf="formType === 'bulk'">
+                 
             <div class="mb-4">
               <label for="departmentId" class="block text-sm font-medium text-gray-700">Department </label>
              
 
-                     <select id="Department_Id" name="Department_Id"  [(ngModel)]="questions_.Department_Id" required
+                     <select id="Department_Id" name="Department_Id"  [(ngModel)]="questions_Array[0].Department_Id" required
                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
                <option [value]="dept.Department_Id"  *ngFor="let dept of department_Data">{{dept?.Department_Name}}</option>
          
@@ -101,17 +135,28 @@
 
 
             </div>
-            
-            <div class="mb-4">
-              <label for="answerDescription" class="block text-sm font-medium text-gray-700">Answer Description</label>
-              <textarea id="answerDescription" name="answerDescription" [(ngModel)]="questions_.Answer_Description"
-                        class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"></textarea>
-            </div>
-            
-            <button type="submit"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-              Add Question
-            </button>
-          </form>
+            <div class="col-md-4" > 
+              <div class="col-md-0"> 
+              <button class="other-button-style pull-left  mb-2  pl-2 pr-2"  type="button" style="background-color: #5d6071;"  (click)="fileInput4.click()"><span>Choose File</span>
+              <input #fileInput4 type="file" name="Photo"  [(ngModel)]="File" (change)="incomingfile($event)" style="display:none;"  placeholder="Upload file" accept=".xlsx" /> </button>
+              </div>
+              <div class="col-md-6 pull-right" style="   "> 
+              {{Display_File_Name_}}
+              </div>
+              </div>
+           </div>
+           
+             
+           <button type="submit"  (click)="Save_questions()"
+           class="bg-indigo-600 hover:bg-indigo-700 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+     Add Question
+   </button>
+
+
+
           
     </section>
+    <section *ngIf="issLoading">
+      <app-loading [isLoading]="issLoading"></app-loading>
+      
+      </section>

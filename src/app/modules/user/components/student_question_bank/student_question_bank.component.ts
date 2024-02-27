@@ -186,7 +186,7 @@ if(Number(Save_status[0].QuestionBank_Id_)>0)
     this.student_question_bank_.correct_Option=Save_status[0].Correct_Answer
    
     // this.Search_student_question_bank(this.selectedDept)
-const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Saved',Type:"false"}});
+// const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Saved',Type:"false"}});
 }
 else{
 

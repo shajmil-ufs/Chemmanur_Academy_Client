@@ -143,6 +143,14 @@ this.issLoading=false;
 }
 Save_student()
 {
+  const requiredFields = ['Student_Name', 'Password', 'Phone_Number', 'Email', 'Address',  'State','Expiry_Account_Date'];
+  
+  for (const field of requiredFields) {
+    if (!this.student_[field]) {
+      this.openDialog(`${field.replace('_', ' ')} is required`);
+      return;
+    }
+  }
 this.issLoading=true;
 this.student_Service_.Save_student(this.student_).subscribe(Save_status => {
 Save_status=Save_status[0];
@@ -171,6 +179,16 @@ this.student_=Object.assign({},student_e);
 }
 togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
+  }
+  openDialog(message: string): void {
+    const dialogRef = this.dialogBox.open(DialogBox_Component, {
+      panelClass: 'Dialogbox-Class',
+      data: { Message: message, Type: '3' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }
 

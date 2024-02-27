@@ -76,6 +76,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            
+          },
           "configurations": {
             "production": {
               "browserTarget": "Chemmanur_Academy_Client:build:production"

@@ -40,7 +40,7 @@ Get_carousel(carousel_Id)
     return new Promise((resolve, reject) => {
       const contentType = file.type;
 
-const key = `chemmanur/Banner/${file.name}`;
+const key = `chemmanur/Banner`;
 
       const bucket = new S3({
         accessKeyId: " AKIAX37YDYI4ACBOVVMU",

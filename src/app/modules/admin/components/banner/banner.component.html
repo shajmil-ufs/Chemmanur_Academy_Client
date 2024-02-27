@@ -20,6 +20,9 @@ Choose file
 
     </label>
 </div>
+
+
+
 <div>
     <button mat-button [disabled]="!Banner.fileChanged" (click)="save_Banner()">Save</button>
 </div>
@@ -28,5 +31,14 @@ Choose file
     <h1>
         Current Banner
     </h1>
-    <img [src]="filepath+Banner.filepath" alt="" srcset="">
+
+ 
+    <img  *ngIf="!isLoading"     height=" 600px"
+    [src]="filepath+Banner.filepath" alt="" srcset="">
+</section>
+
+
+<section *ngIf="isLoading">
+<app-loading [isLoading]="isLoading"></app-loading>
+
 </section>

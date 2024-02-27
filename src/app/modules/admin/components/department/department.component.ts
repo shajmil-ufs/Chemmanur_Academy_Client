@@ -137,6 +137,14 @@ this.issLoading=false;
 }
 Save_department()
 {
+    const requiredFields = ['Department_Name'];
+  
+    for (const field of requiredFields) {
+      if (!this.department_[field]) {
+        this.openDialog(`${field.replace('_', ' ')} is required`);
+        return;
+      }
+    }
     console.log('this.department_: ', this.department_);
 this.issLoading=true;
 this.department_Service_.Save_department(this.department_).subscribe(Save_status => {
@@ -171,6 +179,17 @@ handleImageUpload(event: any) {
     // For example, you can get the file from event.target.files and perform necessary operations
     const file = event.target.files[0];
     console.log('Uploaded file:', file);
+  }
+  
+  openDialog(message: string): void {
+    const dialogRef = this.dialogBox.open(DialogBox_Component, {
+      panelClass: 'Dialogbox-Class',
+      data: { Message: message, Type: '3' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }
 

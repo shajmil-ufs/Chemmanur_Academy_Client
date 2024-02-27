@@ -12,7 +12,7 @@ export class AuthService {
   login(data){
     console.log('data: ', data);
 
-    return this.http.post('Login/Login_Check',data);
+    return this.http.post('Login/forgot-password',data);
   }
   User_Login_Check(data){
     console.log('data: ', data);

@@ -16,6 +16,7 @@ import player from 'lottie-web';
 import { DialogBox_Component } from './components/DialogBox/DialogBox.component';
 import { RouterModule } from '@angular/router';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { LoadingComponent } from './components/loading/loading.component';
 
 export function playerFactory() {
   return player;
@@ -26,6 +27,7 @@ export function playerFactory() {
     TypeHeadSelectComponent,
     NavbarComponent,
     DialogBox_Component,
+    LoadingComponent,
   ],
   imports: [
     LottieModule.forRoot({ player: playerFactory }),
@@ -53,7 +55,7 @@ export function playerFactory() {
     MatNativeDateModule,
     MatInputModule,
     MatSlideToggleModule,
-    ReactiveFormsModule,HttpClientModule,FormsModule,MatDialogModule,DialogBox_Component,PdfViewerModule
+    ReactiveFormsModule,HttpClientModule,FormsModule,MatDialogModule,DialogBox_Component,PdfViewerModule,LoadingComponent
 
   ]
 })

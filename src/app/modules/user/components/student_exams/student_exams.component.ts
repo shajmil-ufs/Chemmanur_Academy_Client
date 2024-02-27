@@ -10,6 +10,7 @@ import { department_Service } from 'src/app/modules/admin/services/department.Se
 import { ExamService } from 'src/app/modules/admin/services/exam';
 import { Exam as ExamType } from 'src/app/Model/exam';
 import { student_question_bank } from 'src/app/Model/student_question_bank';
+import { interval, takeWhile } from 'rxjs';
 
 @Component({
 selector: 'app-student_exams',
@@ -21,8 +22,9 @@ student_exams_Data:student_exams[]
 student_exams_:student_exams= new student_exams();
 currentQuestionIndex: number = 0;
 chosenOptions: { questionId: number, chosenOption: number }[] = [];
+formattedDuration: string;
 
-
+private countdownSubscription;
 student_exams_Name_Search:string;
 Entry_View:boolean=true;
 EditIndex: number;
@@ -67,7 +69,7 @@ Page_Load()
 this.myInnerHeight = (window.innerHeight);
 this.myInnerHeight = this.myInnerHeight - 200;
 this.Clr_student_exams();
-this.Search_department();
+// this.Search_department();
 this.searchExamType();
 this.Entry_View=false;
 }
@@ -178,16 +180,24 @@ ShowQuestion(dept_Id){
     this.selectedDept=dept_Id
     this.student_exams_.Dept_Id=dept_Id
 
-this.Search_student_exams_questions()
+// this.Search_student_exams_questions()
 }
-Search_student_exams_questions(){
+Search_student_exams_questions(exam){
+  this.student_exams_.Student_Exam_Id=0
+
+  this.stopCountdown()
+  this.student_exams_.Exam_Id=exam.Exam_Id
+  let duration=exam.Duration
+  duration=duration*60
+  this.student_exams_.Duration=duration
 this.currentQuestionIndex=0
   this.chosenOptions=[]
     // call chemmanur.Search_student_exams_questions(1, 1);
     this.issLoading=true;
     console.log('this.student_exams_.Exam_Id: ', this.student_exams_.Exam_Id);
     console.log('this.selectedDept: ', this.selectedDept);
-    this.student_exams_Service_.Search_student_exams_questions(this.student_exams_.Exam_Id,this.selectedDept).subscribe(Rows => {
+    this.student_exams_Service_.Search_student_exams_questions(this.student_exams_.Exam_Id).subscribe(Rows => {
+      this.startCountdown();
      this.student_exams_Data=Rows[0];
     this.Total_Entries=this.student_exams_Data.length;
     if(this.student_exams_Data.length==0)
@@ -236,6 +246,38 @@ getBarStyles(): any {
   console.log('percentage: ', percentage);
   return percentage;
 }
+startCountdown() {
+  const countdownInterval = 1000; // Update every second
+  this.countdownSubscription = interval(countdownInterval)
+    .pipe(
+      takeWhile(() => this.student_exams_.Duration >= 0)
+    )
+    .subscribe(() => {
+      this.student_exams_.Duration--; // Decrease duration by one second
+      this.formattedDuration = this.convertDuration(this.student_exams_.Duration); // Convert duration for display
+    });
+}
+
+stopCountdown() {
+  if (this.countdownSubscription) {
+    this.countdownSubscription.unsubscribe();
+  }
+}
+
+convertDuration(duration: number): string {
+  const hours = Math.floor(duration / 3600);
+  const remainingSeconds = duration % 3600;
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
+
+  return `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+}
+
+pad(num: number): string {
+  return num < 10 ? '0' + num : '' + num;
+}
+
+
 
 }
 

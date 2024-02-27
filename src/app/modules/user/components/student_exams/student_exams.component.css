@@ -50,5 +50,9 @@
 }
 
   
-
+.Time_Up{
+  border: 1px solid darksalmon;
+  box-shadow: 2px 1px 5px 1px #ad3939;
+  pointer-events: none;
+}
   

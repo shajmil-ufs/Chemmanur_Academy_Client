@@ -104,11 +104,11 @@
                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
             </div>
           
-            <div class="mb-4">
+            <!-- <div class="mb-4">
               <label for="carouselId" class="block text-sm font-medium text-gray-700">Carousel ID</label>
               <input type="number" id="carouselId" name="carouselId" [(ngModel)]="student_.Carousel_Id"
                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-            </div>
+            </div> -->
           
             <div class="mb-4">
               <label for="expiryAccountDate" class="block text-sm font-medium text-gray-700">Expiry Account Date</label>
@@ -124,4 +124,7 @@
           
           
     </section>
-    
+    <section *ngIf="issLoading">
+      <app-loading [isLoading]="issLoading"></app-loading>
+      
+      </section>
