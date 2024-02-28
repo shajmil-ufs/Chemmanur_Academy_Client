@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-
+import { DialogBox_Component } from 'src/app/modules/shared/components/DialogBox/DialogBox.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -12,9 +13,10 @@ import { AuthService } from '../auth.service';
 export class UserLoginComponent {
   loginForm: FormGroup;
   isLoading: boolean=false;
+  forget_password_view: boolean=false;
   
   constructor(
-    public fb: FormBuilder, public router: Router,private authService_:AuthService
+    public fb: FormBuilder, public router: Router,private authService_:AuthService, public dialog: MatDialog
   ) {
     this.initForm();
   }
@@ -42,4 +44,28 @@ console.log('this.loginForm: ', this.loginForm);
 this.router.navigateByUrl("/user")
       }
   }
+
+
+  
+
+  async Generate_forget_Password(){
+    this.isLoading=true
+    let payload={
+      email:this.loginForm.value.email,
+      userType:2
+    }
+    this.isLoading = true;
+    const success = await this.authService_.Generate_forget_Password(payload);
+    console.log('success: ', success);
+if(success)
+{
+  this.isLoading=false
+
+  const dialogRef = this.dialog.open
+  ( DialogBox_Component, {panelClass:'Dialogbox-Class'
+  ,data:{Message:'Email Sent',Type:"False"}});
+} 
+
+
+}
 }

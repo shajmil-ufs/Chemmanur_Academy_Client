@@ -1,38 +1,44 @@
-<div class="min-h-screen h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1543333995-a78aea2eee50?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+<div *ngIf="!isLoading" class="min-h-screen h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1543333995-a78aea2eee50?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
     <div class="bg-white bg-opacity-90 rounded-lg shadow-lg p-6 sm:p-10 max-w-md w-full">
-      <div class="text-center">
-        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-        <h2 class="mt-6 text-2xl font-bold text-gray-900">Student Login</h2>
-      </div>
-  
-      <form class="mt-8 space-y-6" [formGroup]="loginForm">
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-          <div class="mt-1">
-            <input id="email" name="email" formControlName="email" type="email" autocomplete="email" required
-              class="block w-full px-4 py-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 placeholder-gray-400">
-          </div>
+        <div class="text-center">
+            <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+            <h2 class="mt-6 text-2xl font-bold text-gray-900">Student Login</h2>
         </div>
-  
-        <div class="space-y-1">
-          <div class="flex justify-between">
-            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-            <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-          </div>
-          <div class="mt-1">
-            <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" required
-              class="block w-full px-4 py-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 placeholder-gray-400">
-          </div>
-        </div>
-  
-        <div>
-          <button type="submit" [disabled]="loginForm.invalid" (click)="login()"
-            class="w-full px-4 text-green-400 py-2 bg-indigo-600 font-semibold rounded-md shadow-md hover:bg-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">Sign
-            in</button>
-        </div>
-      </form>
-  
-      
+
+        <form class="mt-8 space-y-6" [formGroup]="loginForm">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                <div class="mt-1">
+                    <input id="email" name="email" formControlName="email" type="email" autocomplete="email" required class="block w-full px-4 py-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 placeholder-gray-400">
+                </div>
+            </div>
+
+            <div *ngIf="!forget_password_view">
+                <div class="flex items-center justify-between">
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                    <div class="text-sm">
+                        <a (click)="forget_password_view=true" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div class="mt-2">
+                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+                </div>
+            </div>
+            <div *ngIf="forget_password_view">
+                <div class="mt-2">
+                    <button [disabled]="!loginForm.value.email" (click)="Generate_forget_Password()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send Link</button>
+                </div>
+            </div>
+        </form>
+
+
     </div>
-  </div>
-  
+</div>
+
+<section *ngIf="isLoading">
+    <app-loading [isLoading]="isLoading"></app-loading>
+
+</section>

@@ -12,12 +12,22 @@ export class AuthService {
   login(data){
     console.log('data: ', data);
 
+    return this.http.post('Login/Login_Check',data);
+  }
+  forgetPassword(data){
+    console.log('data: ', data);
+
     return this.http.post('Login/forgot-password',data);
   }
   User_Login_Check(data){
     console.log('data: ', data);
 
     return this.http.post('Login/User_Login_Check',data);
+  }
+  Generate_forget_Password(data){
+    console.log('data: ', data);
+
+    return this.http.post('Login/Generate-forget-Password',data);
   }
 
 }

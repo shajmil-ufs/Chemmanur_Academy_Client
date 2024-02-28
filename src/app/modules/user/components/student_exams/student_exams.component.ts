@@ -42,6 +42,7 @@ department_Data:department[]
 examTypes: ExamType[];
 examType: ExamType = new ExamType();
     selectedDept: number=0;
+  examStarted: boolean=false;
 constructor(public student_exams_Service_:student_exams_Service,    private examTypeService: ExamService,public department_Service_:department_Service,  private route: ActivatedRoute, private router: Router,public dialogBox: MatDialog) { }
 ngOnInit() 
 {
@@ -73,6 +74,8 @@ this.Clr_student_exams();
 this.searchExamType();
 this.Entry_View=false;
 }
+
+
 searchExamType() {
     this.issLoading = true;
     this.examTypeService.search_ExamType('').subscribe(
@@ -197,7 +200,6 @@ this.currentQuestionIndex=0
     console.log('this.student_exams_.Exam_Id: ', this.student_exams_.Exam_Id);
     console.log('this.selectedDept: ', this.selectedDept);
     this.student_exams_Service_.Search_student_exams_questions(this.student_exams_.Exam_Id).subscribe(Rows => {
-      this.startCountdown();
      this.student_exams_Data=Rows[0];
     this.Total_Entries=this.student_exams_Data.length;
     if(this.student_exams_Data.length==0)
@@ -247,6 +249,7 @@ getBarStyles(): any {
   return percentage;
 }
 startCountdown() {
+  this.examStarted=true
   const countdownInterval = 1000; // Update every second
   this.countdownSubscription = interval(countdownInterval)
     .pipe(
@@ -259,6 +262,7 @@ startCountdown() {
 }
 
 stopCountdown() {
+  this.examStarted=false;
   if (this.countdownSubscription) {
     this.countdownSubscription.unsubscribe();
   }

@@ -110,6 +110,17 @@ export class ExamTypesComponent implements OnInit {
   }
 
   saveExamType() {
+
+    const requiredFields = ['Exam_Name', 'Pass_Mark', 'No_Of_Questions', 'Duration',];
+  
+    for (const field of requiredFields) {
+      if (!this.examType[field]) {
+        this.openDialog(`${field.replace('_', ' ')} is required`,'3');
+        return;
+      }
+    }
+
+
     this.isLoading = true;
     this.examTypeService.save_ExamType(this.examType).subscribe(
       (data) => {

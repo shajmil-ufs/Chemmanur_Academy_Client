@@ -32,8 +32,8 @@ export class NavbarComponent {
  this.user=='1'?this.menuItems= [
     { label: 'Banner', link: '/admin/Banner', action: '' },
     { label: 'Student', link: '/admin/student', action: '' },
-    { label: 'question', link: '/admin/question', action: '' },
     { label: 'Department', link: '/admin/department', action: '' },
+    { label: 'question', link: '/admin/question', action: '' },
     { label: 'PPT', link: '/admin/presentations', action: '' },
     { label: 'exam types', link: '/admin/exam_types', action: '' },
     { label: 'Eligibility Criteria', link: '/admin/eligibility_criteria', action: '' },

@@ -1,37 +1,43 @@
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-  </div>
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" [formGroup]="loginForm">
-          <div>
-              <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-              <div class="mt-2">
-                  <input id="email" name="email" formControlName="email" type="email" autocomplete="email" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              </div>
-          </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" [formGroup]="loginForm">
+            <div>
+                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                <div class="mt-2">
+                    <input id="email" name="email" formControlName="email" type="email" autocomplete="email" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+            </div>
 
-          <div>
-              <div class="flex items-center justify-between">
-                  <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                  <div class="text-sm">
-                      <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-                  </div>
-              </div>
-              <div class="mt-2">
-                  <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              </div>
-          </div>
+            <div *ngIf="!forget_password_view">
+                <div class="flex items-center justify-between">
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                    <div class="text-sm">
+                        <a (click)="forget_password_view=true" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div class="mt-2">
+                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+                </div>
+            </div>
+            <div *ngIf="forget_password_view">
+                <div class="mt-2">
+                    <button [disabled]="!loginForm.value.email" (click)="Generate_forget_Password()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send Link</button>
+                </div>
+            </div>
 
-          <div>
-              <button  [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
-          </div>
-      </form>
 
-      <p class="mt-10 text-center text-sm text-gray-500">
-          <!-- Additional content or links can be placed here -->
-      </p>
-  </div>
+        </form>
+
+        <p class="mt-10 text-center text-sm text-gray-500">
+            <!-- Additional content or links can be placed here -->
+        </p>
+    </div>
 </div>

@@ -10,12 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './admin-login/login.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     CommonModule,
