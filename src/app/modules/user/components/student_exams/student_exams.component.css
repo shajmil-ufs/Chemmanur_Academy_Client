@@ -39,15 +39,7 @@
     -webkit-mask: radial-gradient(at 50% 100%, #0000 55%, #000 55.5%);
     -webkit-mask-mode: alpha;
   }
-  
-  [role="progressbar"]::after {
-    margin-bottom: 31px;
-    counter-reset: percentage var(--value);
-    content: counter(percentage) '%';
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: calc(var(--size) / 5);
-    color: var(--primary);
-}
+
 
   
 .Time_Up{

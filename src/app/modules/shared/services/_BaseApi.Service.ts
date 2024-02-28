@@ -88,10 +88,16 @@ export class BaseApi {
     }
 
     async post(api: string, data: any): Promise<any> {
-        console.log('api: ', api);
-        const response = await firstValueFrom(this.http.post(environment.BasePath + api, data));
-        return response;
-      }
+        try {
+            console.log('api: ', api);
+            const response = await firstValueFrom(this.http.post(environment.BasePath + api, data));
+            return response;
+        } catch (error) {
+            console.error('Error in HTTP request:', error);
+            throw error; // Rethrow the error to propagate it to the caller
+        }
+    }
+    
 
     download(api: string, data: any): Promise<any> {
         return this.http.post(environment.BasePath + api, data, { responseType: 'blob' }).toPromise();

@@ -19,8 +19,8 @@
     <section *ngIf="!student_exams_.Exam_Id">
 
 
-        <div *ngFor="let examType of examTypes; let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8">
-            <div class="flex justify-between" (click)="Search_student_exams_questions(examType)">
+        <div  (click)="Search_student_exams_questions(examType)"*ngFor="let examType of examTypes; let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8">
+            <div class="flex justify-between" >
                 <span>
                 {{ examType.Exam_Name }}
             </span>
@@ -42,19 +42,30 @@
     <section *ngIf="!student_exams_.Student_Exam_Id">
 
 
-        <div *ngIf="student_exams_Data && student_exams_Data.length > 0; ">
+        <div *ngIf="student_exams_Data && student_exams_Data.length > 0;">
             <div class="container mx-auto mt-8">
                 <div [ngClass]="{'Time_Up': student_exams_.Duration <= 0}" class="w-full rounded overflow-hidden shadow-lg">
                     <div class="bg-gray-200 px-6 py-4">
                         <div>
                             <p>Duration: {{student_exams_.Duration>0? convertDuration(student_exams_.Duration):'Time Up' }}</p>
                         </div>
-                        <p class="text-gray-700 font-semibold text-lg">{{ student_exams_Data[currentQuestionIndex].Question_Text }}</p>
+                        <div>
+                          {{ currentQuestionIndex + 1 }} /{{student_exams_Data.length}} 
+                        </div>
+                        <p class="text-gray-700 font-semibold text-lg" *ngIf="examStarted">{{ student_exams_Data[currentQuestionIndex].Question_Text }}</p>
                     </div>
                     <div class="px-6 py-4">
                         <div class="grid grid-cols-1 gap-4">
-                            <label *ngFor="let option of [student_exams_Data[currentQuestionIndex].Option1, student_exams_Data[currentQuestionIndex].Option2, student_exams_Data[currentQuestionIndex].Option3, student_exams_Data[currentQuestionIndex].Option4]; let i = index" class="flex items-center cursor-pointer">
-                      <input 
+                        
+                        
+                            <label *ngFor="let option of [student_exams_Data[currentQuestionIndex].Option1, student_exams_Data[currentQuestionIndex].Option2, student_exams_Data[currentQuestionIndex].Option3, student_exams_Data[currentQuestionIndex].Option4]; let i = index" class="flex gap-5 items-center cursor-pointer">
+                      <div>
+                        option {{i+1}}
+                      </div>
+                      <div>
+                
+                                <input 
+                                [disabled]="!examStarted"
                           type="radio" 
                           class="form-radio h-5 w-5 text-indigo-600" 
                           name="question{{ student_exams_Data[currentQuestionIndex].Question_Id }}" 
@@ -62,23 +73,26 @@
                           [checked]="isOptionSelected(i + 1,student_exams_Data[currentQuestionIndex].Question_Id)"
                           (change)="selectOption(i + 1)">
                       <span class="ml-2 text-gray-800">{{ option }}</span>
+                    </div>
                   </label>
 
                         </div>
                     </div>
                 </div>
+                <div *ngIf="!examStarted">
+                    <Button style="background-color: burlywood;" class="
+                    hover:bg-600 text-black w-full  font-bold py-2 px-4 rounded" (click)="  this.startCountdown()">Start</Button>
+                </div>
             </div>
 
             <div class="mt-4 flex gap-5 " *ngIf="examStarted">
-                <button *ngIf="currentQuestionIndex < student_exams_Data.length - 1 && currentQuestionIndex !=0 && student_exams_.Duration > 0" (click)="currentQuestionIndex=currentQuestionIndex-1">Prev</button>
+                <button *ngIf="currentQuestionIndex <= student_exams_Data.length - 1 && currentQuestionIndex !=0 && student_exams_.Duration > 0" (click)="currentQuestionIndex=currentQuestionIndex-1">Prev</button>
                 <button *ngIf="currentQuestionIndex < student_exams_Data.length - 1 && student_exams_.Duration > 0" (click)="currentQuestionIndex=currentQuestionIndex+1">Next</button>
                 <button *ngIf="currentQuestionIndex == student_exams_Data.length - 1 || student_exams_.Duration <  0 " (click)="Save_student_exams()">Submit</button>
             </div>
 
 
-            <div *ngIf="!examStarted">
-                <Button (click)="  this.startCountdown()">Start</Button>
-            </div>
+          
         </div>
     </section>
     <section *ngIf="student_exams_.Student_Exam_Id">
@@ -99,6 +113,8 @@
   </div>
 </div> -->
         <div role="progressbar" aria-valuemin="0" aria-valuemax="100" [style.--value]="getBarStyles()">
+{{getBarStyles() }}%
+
         </div>
 
 

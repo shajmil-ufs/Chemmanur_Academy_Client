@@ -24,9 +24,13 @@ mode = 'indeterminate';
 arrayBuffer:any;
 Display_File_Name_:string;
 file:File;
+Department_Id:number=0;
 value = 50;
 formType:string='bulk'
 issLoading: boolean;
+currentPage: number = 1;
+pageSize: number = 10; // Default page size
+totalPages: number = 1;
 Permissions: any;
 questions_Edit:boolean;
 questions_Save:boolean;
@@ -34,6 +38,7 @@ questions_Delete:boolean;
 myInnerHeight: number;
     department_Data: any=[];
     questions_Array: any=[];
+  totalItems: any;
 constructor(public questions_Service_:questions_Service,public department_Service_:department_Service, private route: ActivatedRoute, private router: Router,public dialogBox: MatDialog) { }
 ngOnInit() 
 {
@@ -91,14 +96,21 @@ return index;
 // this.questions_.Delete_Status="";
 // this.questions_.Answer_Description="";
 this.questions_Array=[]
+this.Department_Id=0
 this.questions_Array.push(new questions())
+   this.Display_File_Name_=''
 
 }
 Search_questions()
 {
 this.issLoading=true;
-this.questions_Service_.Search_questions('').subscribe(Rows => {
- this.questions_Data=Rows[0];
+this.questions_Service_.Search_questions('',this.currentPage, this.pageSize).subscribe(Rows => {
+  console.log('Rows ', Rows['results']);
+ this.questions_Data=Rows['results'];
+ this.totalItems =Rows['totalItems']; // Assuming the backend sends the total number of items in the response
+
+ this.totalPages= Math.ceil(this.totalItems / this.pageSize);;
+ console.log('this.totalPages: ', this.totalPages);
 this.Total_Entries=this.questions_Data.length;
 if(this.questions_Data.length==0)
 {
@@ -150,6 +162,9 @@ this.issLoading=false;
 }
 Save_questions()
 {
+
+  this.questions_Array[0].Department_Id=this.Department_Id
+
 let dialogRef;
 if (this.formType === 'bulk') {
     if (!this.questions_Array[0].Department_Id) {
@@ -167,6 +182,7 @@ if (this.formType === 'bulk') {
     }
   }
   
+
 this.issLoading=true;
 this.questions_Service_.Save_questions(this.questions_Array).subscribe(Save_status => {
 Save_status=Save_status[0];
@@ -174,6 +190,7 @@ if(Number(Save_status[0].Question_Id_)>0)
 {
 const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogbox-Class',data:{Message:'Saved',Type:"false"}});
 this.Close_Click()
+this.Clr_questions()
 }
 else{
 
@@ -184,7 +201,7 @@ this.issLoading=false;
 
 this.issLoading=false;
  });
- this.Clr_questions()
+
 
 }
 Edit_questions(questions_e:questions,index)
@@ -221,6 +238,7 @@ incomingfile(event) {
     }
     Upload() 
     {
+      this.issLoading=true;
         let fileReader = new FileReader();
         fileReader.onload = (e) => {
     
@@ -236,11 +254,25 @@ incomingfile(event) {
         this.questions_Array=(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
         this.questions_Array.sort();
         this.issLoading=false;
+
+   
         console.log('   this.questions_Array: ',    this.questions_Array);
     }
     fileReader.readAsArrayBuffer(this.file);
     }
-
+    nextPage(): void {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.Search_questions();
+      }
+    }
+  
+    prevPage(): void {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.Search_questions();
+      }
+    }
 
     openDialog(message: string): void {
         const dialogRef = this.dialogBox.open(DialogBox_Component, {

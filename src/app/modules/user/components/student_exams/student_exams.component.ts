@@ -244,7 +244,7 @@ isOptionSelected(optionIndex: number,questionId): boolean {
 
 
 getBarStyles(): any {
-  const percentage = (this.student_exams_.Mark_Obtained / this.student_exams_.Total_Marks) * 100;
+  const percentage = ((this.student_exams_.Mark_Obtained / this.student_exams_.Total_Marks) * 100).toFixed(2);
   console.log('percentage: ', percentage);
   return percentage;
 }

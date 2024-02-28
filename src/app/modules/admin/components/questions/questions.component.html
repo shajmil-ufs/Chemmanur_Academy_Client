@@ -38,7 +38,13 @@
 
 
     
-    </div></section>
+    </div>
+    <div>
+      <button [disabled]="currentPage === 1" (click)="prevPage()">Previous</button>
+      Page {{ currentPage }} of {{ totalPages }}
+      <button [disabled]="currentPage === totalPages" (click)="nextPage()">Next</button>
+    </div>
+  </section>
     <section *ngIf="Entry_View">
         <button class="bg-blue-500
          hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Close_Click()">
@@ -126,7 +132,7 @@
               <label for="departmentId" class="block text-sm font-medium text-gray-700">Department </label>
              
 
-                     <select id="Department_Id" name="Department_Id"  [(ngModel)]="questions_Array[0].Department_Id" required
+                     <select id="Department_Id" name="Department_Id"  [(ngModel)]="Department_Id" required
                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
                <option [value]="dept.Department_Id"  *ngFor="let dept of department_Data">{{dept?.Department_Name}}</option>
          

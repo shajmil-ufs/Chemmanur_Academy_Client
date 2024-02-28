@@ -31,18 +31,28 @@ export class UserLoginComponent {
   async login(){
     this.isLoading = true;
 console.log('this.loginForm: ', this.loginForm);
-      const success = await this.authService_.User_Login_Check(this.loginForm.value);
-      console.log('success: ', success);
-      if (success) 
-      {
-        console.log('success.token: ', success.token);
-        localStorage.setItem("Access_Token", success.token);
-        localStorage.setItem("User_Type","2");
-        localStorage.setItem("Student_Id",success[0].Student_Id);
-        console.log('localStorage: ', localStorage);
-
-this.router.navigateByUrl("/user")
+try {
+  const success = await this.authService_.User_Login_Check(this.loginForm.value);
+  console.log('success: ', success);
+        if (success) 
+        {
+          this.isLoading=false
+  
+          console.log('success.token: ', success.token);
+          localStorage.setItem("Access_Token", success.token);
+          localStorage.setItem("User_Type","2");
+          localStorage.setItem("Student_Id",success[0].Student_Id);
+          console.log('localStorage: ', localStorage);
+  
+  this.router.navigateByUrl("/user")
+        }else{
+          this.isLoading=false
+  
+        }
+      } catch (error) {
+        this.isLoading=false
       }
+     
   }
 
 
@@ -64,7 +74,10 @@ if(success)
   const dialogRef = this.dialog.open
   ( DialogBox_Component, {panelClass:'Dialogbox-Class'
   ,data:{Message:'Email Sent',Type:"False"}});
-} 
+} else{
+  this.isLoading=false
+
+}
 
 
 }

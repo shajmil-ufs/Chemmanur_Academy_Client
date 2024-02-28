@@ -28,22 +28,51 @@
               </div>
               <div class="px-6 py-4">
                 <div class="grid grid-cols-1 gap-4">
-                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(1), 'bg-red-200': isOptionChosen(1)}">
-                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="1">
-                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option1 }}</span>
+                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(1), 'bg-red-200': isOptionChosen(1)}">
+                      <div>
+                        option 1
+                      </div>
+                      <div>
+
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="1">
+                        <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option1 }}</span>
+                      </div>
                     </label>
-                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(2), 'bg-red-200': isOptionChosen(2)}">
-                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="2">
-                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option2 }}</span>
+                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(2), 'bg-red-200': isOptionChosen(2)}">
+                      <div>
+                        option 2
+                      </div>
+                      <div>
+
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="2">
+                        <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option2 }}</span>
+                      </div>
                     </label>
-                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(3), 'bg-red-200': isOptionChosen(3)}">
-                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="3">
-                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option3 }}</span>
+                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(3), 'bg-red-200': isOptionChosen(3)}">
+                      <div>
+                        option 3
+                      </div>
+                      <div>
+
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="3">
+                        <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option3 }}</span>
+                      </div>
                     </label>
-                    <label class="flex items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(4), 'bg-red-200': isOptionChosen(4)}">
-                      <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="4">
-                      <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option4 }}</span>
+                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(4), 'bg-red-200': isOptionChosen(4)}">
+                      <div>
+                        option 4
+                      </div>
+                      <div>
+
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="4">
+                        <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option4 }}</span>
+                      </div>
                     </label>
+                  </div>
+
+
+                  <div class="ractional shadow-sm border mt-3" *ngIf="student_question_bank_.QuestionBank_Id">
+                    {{student_question_bank_Data[0].Answer_Description || 'No Description'}}
                   </div>
                   
               </div>

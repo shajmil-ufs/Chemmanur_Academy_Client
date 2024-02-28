@@ -24,10 +24,15 @@ private extractData(res: Response)
 let body = res;
 return body || { };
 }
-Search_questions(questions_Name):Observable<any>
-{
-var Search_Data={'questions_Name':questions_Name}
- return this.http.get(environment.BasePath +'questions/Search_questions/',{params:Search_Data});}
+Search_questions(questions_Name, page_number, page_size): Observable<any> {
+    const searchParams = {
+        questions_Name: questions_Name,
+        page_number: page_number,
+        page_size: page_size
+    };
+    return this.http.get(environment.BasePath + 'questions/Search_questions', { params: searchParams });
+}
+
 Delete_questions(questions_Id)
 {
  return this.http.get(environment.BasePath +'questions/Delete_questions/'+questions_Id);}

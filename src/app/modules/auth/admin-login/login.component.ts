@@ -34,11 +34,16 @@ console.log('this.loginForm: ', this.loginForm);
       console.log('success: ', success);
       if (success) 
       {
+        this.isLoading=false
+
         console.log('success.token: ', success.token);
         localStorage.setItem("Access_Token", success.token);
         localStorage.setItem("User_Type", "1");
         
 this.router.navigateByUrl("/admin")
+      }else{
+        this.isLoading=false
+
       }
   }
 
@@ -60,7 +65,9 @@ this.router.navigateByUrl("/admin")
       const dialogRef = this.dialog.open
       ( DialogBox_Component, {panelClass:'Dialogbox-Class'
       ,data:{Message:'Email Sent',Type:"False"}});
-    } 
+    } else{
+      this.isLoading=false
+    }
 
 
 }
