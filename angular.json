@@ -121,7 +121,8 @@
             "outputPath": "dist/Chemmanur_Academy_Client/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
+            "inlineStyleLanguage": "scss",
+            "externalDependencies": ["canvas"]
           },
           "configurations": {
             "production": {
