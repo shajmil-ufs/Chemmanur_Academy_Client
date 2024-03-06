@@ -107,7 +107,7 @@
                 <label for="departmentId" class="block text-sm font-medium text-gray-700">Department </label>
                
   
-                       <select id="Department_Id" name="Department_Id"  [(ngModel)]="questions_Array[0].Department_Id" required
+                       <select id="Department_Id" name="Department_Id"  [(ngModel)]="Department_Id" required
                        class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
                  <option [value]="dept.Department_Id"  *ngFor="let dept of department_Data">{{dept?.Department_Name}}</option>
            

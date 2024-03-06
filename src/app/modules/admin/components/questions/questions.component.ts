@@ -163,10 +163,14 @@ this.issLoading=false;
 Save_questions()
 {
 
+  console.log('this.Department_Id: ', this.department_Data);
   this.questions_Array[0].Department_Id=this.Department_Id
+  console.log('this.questions_Array[0].Department_Id: ', this.questions_Array[0].Department_Id);
 
 let dialogRef;
+console.log('this.formType: ', this.formType);
 if (this.formType === 'bulk') {
+  console.log('this.questions_Array[0].Department_Id: ', this.questions_Array[0].Department_Id);
     if (!this.questions_Array[0].Department_Id) {
       this.openDialog('Department is required');
       return;
@@ -174,6 +178,7 @@ if (this.formType === 'bulk') {
   } else {
     const requiredFields = ['Question_Text', 'Option1', 'Option2', 'Option3', 'Option4', 'Correct_Answer', 'Department_Id'];
   
+    console.log('this.questions_Array: ', this.questions_Array);
     for (const field of requiredFields) {
       if (!this.questions_Array[0][field]) {
         this.openDialog(`${field.replace('_', ' ')} is required`);
