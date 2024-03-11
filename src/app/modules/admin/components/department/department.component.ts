@@ -171,8 +171,7 @@ Edit_department(department_e:department,index)
 this.Entry_View=true;
 this.department_=department_e;
 this.department_=Object.assign({},department_e);
-this.Clr_department()
-this.Close_Click()
+
 }
 handleImageUpload(event: any) {
     // Handle image upload logic here

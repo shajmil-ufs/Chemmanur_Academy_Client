@@ -10,10 +10,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { student } from 'src/app/Model/student';
 import { DialogBox_Component } from 'src/app/modules/shared/components/DialogBox/DialogBox.component';
 import { student_Service } from '../../services/student.Service';
+import { DatePipe } from '@angular/common';
 @Component({
 selector: 'app-student',
 templateUrl: './student.component.html',
-styleUrls: ['./student.component.css']
+styleUrls: ['./student.component.css'],
+providers:[DatePipe]
 })
 export class studentComponent implements OnInit {
 student_Data:student[]
@@ -32,7 +34,7 @@ student_Save:boolean;
 student_Delete:boolean;
 myInnerHeight: number;
     passwordVisible: boolean=false;
-constructor(public student_Service_:student_Service, private route: ActivatedRoute, private router: Router,public dialogBox: MatDialog) { }
+constructor(public student_Service_:student_Service, private route: ActivatedRoute, private router: Router,public dialogBox: MatDialog,private datePipe: DatePipe) { }
 ngOnInit() 
 {
 // this.Permissions = Get_Page_Permission(15);
@@ -151,7 +153,14 @@ Save_student()
       return;
     }
   }
-this.issLoading=true;
+
+ let FormatedDate= this.formatDate(this.student_.Expiry_Account_Date)
+ console.log('FormatedDate: ', FormatedDate);
+
+ this.student_.Expiry_Account_Date=FormatedDate
+ 
+ 
+ this.issLoading=true;
 this.student_Service_.Save_student(this.student_).subscribe(Save_status => {
 Save_status=Save_status[0];
 if(Number(Save_status[0].student_Id_)>0)
@@ -171,11 +180,21 @@ const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogb
  });
 
 }
+formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
+}
 Edit_student(student_e:student,index)
 {
-this.Entry_View=true;
+
+
 this.student_=student_e;
 this.student_=Object.assign({},student_e);
+let FormatedDate= this.formatDate(this.student_.Expiry_Account_Date)
+console.log('FormatedDate: ', FormatedDate);
+
+this.student_.Expiry_Account_Date=FormatedDate
+this.Entry_View=true;
 }
 togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;

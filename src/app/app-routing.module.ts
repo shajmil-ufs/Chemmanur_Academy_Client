@@ -46,7 +46,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
+    useHash: true
+
 })],
   exports: [RouterModule],
 })

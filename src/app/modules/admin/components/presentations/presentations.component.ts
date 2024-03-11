@@ -234,6 +234,7 @@ handleFileInput(event: any): void {
 
 
 afterLoadComplete(pdfData: any) {
+  console.log('pdfData: ', pdfData);
   this.totalPages = pdfData.numPages;
   this.isLoaded = true;
 }

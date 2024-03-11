@@ -119,6 +119,14 @@ if(this.eligibilityCriterias.length){
   }
 
   saveeligibilityCriteria() {
+    const requiredFields = ['Minimum_No_Of_Exam', 'Minimum_No_Of_Pass', 'Average_Mark', ];
+  
+    for (const field of requiredFields) {
+      if (!this.eligibilityCriteria[field]) {
+        this.openDialog(`${field.replace('_', ' ')} is required`,'3');
+        return;
+      }
+    }
     this.isLoading = true;
     debugger
     this.eligibilityCriteriaService.Save_Eligibility_Criteria(this.eligibilityCriteria).subscribe(

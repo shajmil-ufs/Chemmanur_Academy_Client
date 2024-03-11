@@ -44,7 +44,7 @@
 
         <div *ngIf="student_exams_Data && student_exams_Data.length > 0;">
             <div class="container mx-auto mt-8">
-                <div [ngClass]="{'Time_Up': student_exams_.Duration <= 0}" class="w-full rounded overflow-hidden shadow-lg">
+                <div [ngClass]="{'Time_Up': student_exams_.Duration <= 0}" class="w-full rounded overflow-hidden shadow-lg" *ngIf="examStarted">
                     <div class="bg-gray-200 px-6 py-4">
                         <div>
                             <p>Duration: {{student_exams_.Duration>0? convertDuration(student_exams_.Duration):'Time Up' }}</p>
@@ -65,7 +65,7 @@
                       <div>
                 
                                 <input 
-                                [disabled]="!examStarted"
+                               
                           type="radio" 
                           class="form-radio h-5 w-5 text-indigo-600" 
                           name="question{{ student_exams_Data[currentQuestionIndex].Question_Id }}" 
@@ -80,8 +80,25 @@
                     </div>
                 </div>
                 <div *ngIf="!examStarted">
-                    <Button style="background-color: burlywood;" class="
-                    hover:bg-600 text-black w-full  font-bold py-2 px-4 rounded" (click)="  this.startCountdown()">Start</Button>
+                    <div class="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
+                        <h2 class="text-xl font-bold mb-4">Exam Instructions</h2>
+                        <p class="mb-4">Welcome to your exam. Please read the following instructions carefully:</p>
+                        <ul class="list-disc pl-6 mb-4">
+                          <li>You have <strong>{{ student_exams_Data.length }}</strong> exams to complete.</li>
+                          <li>Each exam has a time limit of <strong>{{convertDuration(student_exams_.Duration) }}</strong>.</li>
+                          <li>Once the time is up, you must submit your exam. You won't be able to edit your answers after the time is over.</li>
+                          <li>Please manage your time effectively to complete all questions.</li>
+                          <li>Ensure that your internet connection is stable and your browser is compatible with the exam platform.</li>
+                          <li>If you encounter any technical issues, please contact <strong>{{ supportEmail }}</strong> for assistance.</li>
+                          <li>Remember to maintain exam integrity. Any form of cheating or violation of exam rules will result in consequences.</li>
+                        </ul>
+                        <p class="mt-4">Good luck!</p>
+                        <Button style="background-color: burlywood;" class="
+                        hover:bg-600 text-black w-full  font-bold py-2 px-4 rounded" (click)="  this.startCountdown()">Start</Button>
+                      </div>
+                      
+                       
+                  
                 </div>
             </div>
 

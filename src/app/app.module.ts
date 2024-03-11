@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { SharedModule } from './modules/shared/shared.module';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 export function playerFactory() {
   return player;
@@ -22,9 +23,9 @@ export function playerFactory() {
   imports: [
     BrowserModule,
     SharedModule,
-    RouterModule.forRoot([], {
-  
-}),
+    RouterModule.forRoot([], 
+      { useHash: true }
+),
 // RouterModule.forRoot([], {
 //   initialNavigation: 'enabledBlocking'                //research about this when this code comes project page is not get loaded
 // }), 
@@ -39,6 +40,8 @@ export function playerFactory() {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide : LocationStrategy , useClass: HashLocationStrategy}
+
   ],  bootstrap: [AppComponent]
 })
 export class AppModule { }
