@@ -151,6 +151,16 @@ this.issLoading=false;
 }
 
 Save_presentations(){
+  const requiredFields = ['Name','Department_Id', ];
+  
+  for (const field of requiredFields) {
+    if (!this.presentations_[field]) {
+      
+      this.openDialog(`${field.replace(/_/g, ' ')} is required`,'3');
+
+      return;
+    }
+  }
     console.log('this.presentations_.file: ', this.presentations_.file);
      if (!this.fileChanged &&this.presentations_.PPT_ID  ) {   //for edit if image is there then no need to upload to s3
         this.save();
@@ -246,6 +256,14 @@ nextPage() {
 prevPage() {
   this.page--;
 }
-  
+openDialog(message: string, type: string) {
+  console.log('type: ', type);
+  console.log('message: ', message);
+ 
+  const dialogRef = this.dialogBox.open(DialogBox_Component, {
+        panelClass: 'dialogbox-class',
+        data: {Message: message,Type: type }
+      });
+    }
 }
 

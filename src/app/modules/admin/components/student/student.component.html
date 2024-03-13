@@ -1,29 +1,23 @@
-
-  
-
-
-
-  
 <section *ngIf="!Entry_View">
     <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" (click)="Create_New()">
        Add Student 
       </button>
-    
+
     <div *ngFor="let student of student_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8">
-    <div class="flex justify-between">
-        <span>
+        <div class="flex justify-between">
+            <span>
 <div>
 
     <span class="muted">
-         Name : 
-    </span>  {{student.Student_Name}}
-</div>
-<div>
+         Student Name : 
+    </span> {{student.Student_Name}}
+        </div>
+        <div>
 
-    <span class="muted">
-        Email : 
-    </span>  {{student.Email}}
-</div>
+            <span class="muted">
+        EmailID : 
+    </span> {{student.Email}}
+        </div>
         </span>
         <div>
 
@@ -37,62 +31,56 @@
     </div>
 
 
-    
-    </div></section>
-    <section *ngIf="Entry_View">
-        <button class="bg-blue-500
+
+    </div>
+</section>
+<section *ngIf="Entry_View">
+    <button class="bg-blue-500
          hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Close_Click()">
             Back
             
            </button>
-           <form #studentForm="ngForm">
-            <div class="mb-4">
-              <label for="studentName" class="block text-sm font-medium text-gray-700">Student Name</label>
-              <input type="text" id="studentName" name="studentName" [(ngModel)]="student_.Student_Name" required
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <div class="relative">
-                  <input [type]="passwordVisible?'text':'password'" id="password" name="password" [(ngModel)]="student_.Password" required
-                         class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-                  <button type="button" class="absolute inset-y-0 right-0 flex items-center px-2 focus:outline-none"
-                          (click)="togglePasswordVisibility()">
+    <form #studentForm="ngForm">
+        <div class="mb-4">
+            <label for="studentName" class="block text-sm font-medium text-gray-700">  Student Name<span class="text-red-500">*</span></label>
+            <input type="text" id="studentName" name="studentName" maxlength="50" [(ngModel)]="student_.Student_Name" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+        </div>
+
+        <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password<span class="text-red-500">*</span></label>
+            <div class="relative">
+                <input maxlength="50" [type]="passwordVisible?'text':'password'" id="password" name="password" [(ngModel)]="student_.Password" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+                <button type="button" class="absolute inset-y-0 right-0 flex items-center px-2 focus:outline-none" (click)="togglePasswordVisibility()">
 
                           <span class="material-symbols-outlined">
                           {{passwordVisible?'visibility':'visibility_off'}}  
                             </span>
                    
                   </button>
-                </div>
-              </div>
-            
-            <div class="mb-4">
-              <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
-              <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="student_.Phone_Number" 
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
             </div>
-            
-            <div class="mb-4">
-              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-              <input type="email" id="email" name="email" [(ngModel)]="student_.Email" required
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
-              <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-              <input type="text" id="address" name="address" [(ngModel)]="student_.Address"
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
-              <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-              <input type="text" id="city" name="city" [(ngModel)]="student_.City"
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-            </div>
-            
-            <div class="mb-4">
+        </div>
+
+        <div class="mb-4">
+            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Mobile  No<span class="text-red-500">*</span></label>
+            <input type="number" id="phoneNumber" name="phoneNumber" [(ngModel)]="student_.Phone_Number" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+        </div>
+
+        <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email ID<span class="text-red-500">*</span></label>
+            <input type="email" maxlength="50" id="email" name="email" [(ngModel)]="student_.Email" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+        </div>
+
+        <div class="mb-4">
+            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+            <input type="text" maxlength="150" id="address" name="address" [(ngModel)]="student_.Address" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+        </div>
+
+        <div class="mb-4">
+            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+            <input type="text" id="city" name="city" [(ngModel)]="student_.City" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+        </div>
+
+        <!-- <div class="mb-4">
               <label for="state" class="block text-sm font-medium text-gray-700">State</label>
               <input type="text" id="state" name="state" [(ngModel)]="student_.State"
                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
@@ -102,29 +90,28 @@
               <label for="zipCode" class="block text-sm font-medium text-gray-700">Zip Code</label>
               <input type="text" id="zipCode" name="zipCode" [(ngModel)]="student_.Zip_Code"
                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-            </div>
-          
-            <!-- <div class="mb-4">
+            </div> -->
+
+        <!-- <div class="mb-4">
               <label for="carouselId" class="block text-sm font-medium text-gray-700">Carousel ID</label>
               <input type="number" id="carouselId" name="carouselId" [(ngModel)]="student_.Carousel_Id"
                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
             </div> -->
-          
-            <div class="mb-4">
-              <label for="expiryAccountDate" class="block text-sm font-medium text-gray-700">Expiry Account Date</label>
-              <input type="date" id="expiryAccountDate" name="expiryAccountDate" [(ngModel)]="student_.Expiry_Account_Date"
-                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-            </div>
-            
-            <button  (click)="Save_student()"
-                    class="bg-green-600	 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-              Add Student
+
+        <div class="mb-4">
+            <label for="expiryAccountDate" class="block text-sm font-medium text-gray-700">Account Expiry Date<span class="text-red-500">*</span></label>
+            <input style="appearance: none;" type="date" id="expiryAccountDate" name="expiryAccountDate" [(ngModel)]="student_.Expiry_Account_Date" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50"
+                placeholder="">
+        </div>
+
+        <button (click)="Save_student()" class="bg-green-600	 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+               Save
             </button>
-          </form>
-          
-          
-    </section>
-    <section *ngIf="issLoading">
-      <app-loading [isLoading]="issLoading"></app-loading>
-      
-      </section>
+    </form>
+
+
+</section>
+<section *ngIf="issLoading">
+    <app-loading [isLoading]="issLoading"></app-loading>
+
+</section>

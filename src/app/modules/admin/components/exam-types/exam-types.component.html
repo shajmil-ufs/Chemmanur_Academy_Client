@@ -1,61 +1,60 @@
-<section *ngIf="!Entry_View">
-    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" (click)="createNew()">
+<section *ngIf="!isLoading">
+    <section *ngIf="!Entry_View">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" (click)="createNew()">
       Add Exam Type
     </button>
-  
-    <div *ngFor="let examType of examTypes; let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8">
-      <div class="flex justify-between">
-        <span>
+
+        <div *ngFor="let examType of examTypes; let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8">
+            <div class="flex justify-between">
+                <span>
           {{ examType.Exam_Name }}
         </span>
-        <div>
-          <span (click)="deleteExamType(examType.Exam_Id, i)" class="material-symbols-outlined">
+                <div>
+                    <span (click)="deleteExamType(examType.Exam_Id, i)" class="material-symbols-outlined">
             delete
           </span>
-          <span (click)="editExamType(examType, i)" class="material-symbols-outlined">
+                    <span (click)="editExamType(examType, i)" class="material-symbols-outlined">
             edit
           </span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  
-  <section *ngIf="Entry_View">
-    <button class="bg-blue-500 hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="closeClick()">
+    </section>
+
+    <section *ngIf="Entry_View">
+        <button class="bg-blue-500 hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="closeClick()">
       Back
     </button>
-  
-    <form (ngSubmit)="saveExamType()">
-      <div class="mb-4">
-        <label for="examTypeName" class="block text-sm font-medium text-gray-700">Exam Type Name</label>
-        <input type="text" id="examTypeName" name="examTypeName" [(ngModel)]="examType.Exam_Name" required
-               class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-      </div>
-  
-      <div class="mb-4">
-        <label for="passMark" class="block text-sm font-medium text-gray-700">Pass Mark</label>
-        <input type="number" id="passMark" name="passMark" [(ngModel)]="examType.Pass_Mark"
-               class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-      </div>
-  
-      <div class="mb-4">
-        <label for="numberOfQuestions" class="block text-sm font-medium text-gray-700">Number of Questions</label>
-        <input type="number" id="numberOfQuestions" name="numberOfQuestions" [(ngModel)]="examType.No_Of_Questions"
-               class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-      </div>
-  
-      <div class="mb-4">
-        <label for="duration" class="block text-sm font-medium text-gray-700">Duration (in minutes)</label>
-        <input type="number" id="duration" name="duration" [(ngModel)]="examType.Duration"
-               class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-      </div>
-  
-      <!-- Add other fields as needed -->
-  
-      <button type="submit"
-              class="hover:bg-indigo-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-        Add Exam Type
-      </button>
-    </form>
-  </section>
-  
+
+        <form (ngSubmit)="saveExamType()">
+            <div class="mb-4">
+                <label for="examTypeName" class="block text-sm font-medium text-gray-700">Exam Type </label>
+                <input type="text" id="examTypeName" name="examTypeName" maxlength="50" [(ngModel)]="examType.Exam_Name" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            </div>
+
+            <div class="mb-4">
+                <label for="passMark" class="block text-sm font-medium text-gray-700">Pass Mark</label>
+                <input type="number" id="passMark" name="passMark" maxlength="5" [(ngModel)]="examType.Pass_Mark" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            </div>
+
+            <div class="mb-4">
+                <label for="numberOfQuestions" class="block text-sm font-medium text-gray-700">No of Questions</label>
+                <input type="number" id="numberOfQuestions" name="numberOfQuestions" maxlength="5" [(ngModel)]="examType.No_Of_Questions" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            </div>
+
+            <div class="mb-4">
+                <label for="duration" class="block text-sm font-medium text-gray-700">Duration (in minutes)</label>
+                <input type="number" id="duration" name="duration" maxlength="5" [(ngModel)]="examType.Duration" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            </div>
+
+            <!-- Add other fields as needed -->
+
+            <button type="submit" [disabled]=" this.isLoading" class="hover:bg-indigo-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+Save      </button>
+        </form>
+    </section>
+</section>
+<section *ngIf="isLoading">
+    <app-loading [isLoading]="isLoading"></app-loading>
+
+</section>

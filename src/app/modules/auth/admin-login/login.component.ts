@@ -50,7 +50,12 @@ this.router.navigateByUrl("/admin")
 
 
   async Generate_forget_Password(){
-    
+    if(!this.loginForm.value.email){
+      const dialogRef = this.dialog.open
+      ( DialogBox_Component, {panelClass:'Dialogbox-Class'
+      ,data:{Message:'Enter Email Id',Type:"3"}});
+      return
+    }
     let payload={
       email:this.loginForm.value.email,
       userType:1

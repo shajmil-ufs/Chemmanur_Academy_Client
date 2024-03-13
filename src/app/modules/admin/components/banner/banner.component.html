@@ -1,5 +1,4 @@
 <div class="mb-4">
-    <label for="file" class="block text-sm font-medium text-gray-700">Upload File</label>
     <!-- Label to display filename -->
     <label class="block mt-1 w-full  border  rounded-md border-gray-700  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 cursor-pointer">
         <!-- Display filename if available, otherwise display "Choose file" -->
@@ -8,7 +7,7 @@
 
 <div class="bg-slate-300 p-2 rounded-md ">
 
-Choose file
+    Choose Banner Image
 </div>
 <div class="p-2 ">
 
@@ -32,13 +31,12 @@ Choose file
         Current Banner
     </h1>
 
- 
-    <img  *ngIf="!isLoading"     height=" 600px"
-    [src]="filepath+Banner.filepath" alt="" srcset="">
+
+    <img *ngIf="!isLoading" height=" 600px" [src]="filepath+Banner.filepath" alt="" srcset="">
 </section>
 
 
 <section *ngIf="isLoading">
-<app-loading [isLoading]="isLoading"></app-loading>
+    <app-loading [isLoading]="isLoading"></app-loading>
 
 </section>

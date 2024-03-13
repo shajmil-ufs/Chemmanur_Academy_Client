@@ -15,7 +15,8 @@ export class BannerComponent  implements OnInit{
   fileChanged: boolean=false;
   isLoading:boolean=false
   Banner: any={};
-  constructor(  private route: ActivatedRoute, private router: Router,public dialogBox: MatDialog,private carousel_Services:carousel_Service) { 
+  constructor(  private route: ActivatedRoute,    public dialog: MatDialog
+,    private router: Router,private carousel_Services:carousel_Service) { 
     this.filepath=environment.FilePath
 }
   ngOnInit(): void {
@@ -63,7 +64,7 @@ Search_carousel(){
             console.log('File:', file);
         } else {
             // File type is not supported (not an image)
-            const dialogRef = this.dialogBox.open
+            const dialogRef = this.dialog.open
             ( DialogBox_Component, {panelClass:'Dialogbox-Class'
             ,data:{Message:'Choose Image',Type:"3"}});
             
@@ -82,6 +83,8 @@ save_Banner(){
             this.Banner.FilePath =res['key']
             console.log('res: ', res);
             this.carousel_Services.Save_carousel(this.Banner).subscribe(res=>{
+              this.openDialog('Saved', 'false');
+
               this.Search_carousel()        
             
             
@@ -89,5 +92,13 @@ save_Banner(){
     })
 
 }
-
+openDialog(message: string, type: string) {
+  console.log('type: ', type);
+  console.log('message: ', message);
+ 
+  const dialogRef = this.dialog.open(DialogBox_Component, {
+        panelClass: 'dialogbox-class',
+        data: {Message: message,Type: type }
+      });
+    }
 }

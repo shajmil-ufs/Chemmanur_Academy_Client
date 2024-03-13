@@ -115,7 +115,12 @@ export class ExamTypesComponent implements OnInit {
   
     for (const field of requiredFields) {
       if (!this.examType[field]) {
-        this.openDialog(`${field.replace('_', ' ')} is required`,'3');
+        if(field ==='Exam_Name')
+        this.openDialog(`Exam Type is required`,'3');
+
+        else
+        this.openDialog(`${field.replace(/_/g, ' ')} is required`,'3');
+
         return;
       }
     }

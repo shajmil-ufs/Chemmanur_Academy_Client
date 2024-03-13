@@ -87,6 +87,14 @@ if(this.eligibilityCriterias.length){
     );
   }
 
+
+  validateLength(inputElement: HTMLInputElement) {
+    let inputValue = inputElement.value;
+    if (inputValue.length > 5) {
+      inputElement.value = inputValue.substring(0, 5);
+    }
+  }
+  
   deleteeligibilityCriteria(eligibilityCriteriaId: number, index: number) {
     this.editIndex = index;
     const dialogRef = this.dialog.open(DialogBox_Component, {

@@ -128,6 +128,7 @@ this.student_Data.splice(this.EditIndex, 1);
 const dialogRef = this.dialogBox.open
 ( DialogBox_Component, {panelClass:'Dialogbox-Class'
 ,data:{Message:'Deleted',Type: "false"}});
+this.Search_student()
 }
 else
 {
@@ -145,14 +146,45 @@ this.issLoading=false;
 }
 Save_student()
 {
-  const requiredFields = ['Student_Name', 'Password', 'Phone_Number', 'Email', 'Address',  'State','Expiry_Account_Date'];
-  
+  const requiredFields = ['Student_Name', 'Password', 'Phone_Number', 'Email', 'Address','Expiry_Account_Date'];
+  let message;
+
   for (const field of requiredFields) {
-    if (!this.student_[field]) {
-      this.openDialog(`${field.replace('_', ' ')} is required`);
-      return;
+    let message;
+    switch (field) {
+        case 'Email':
+            if (!this.student_[field]) {
+                message = 'Email Id is required';
+            }else if (!/\S+@\S+\.\S+/.test(this.student_[field])) {
+              message = 'Invalid Email Id';
+          }
+            break;
+        case 'Expiry_Account_Date':
+            if (!this.student_[field]) {
+                message = 'Account Expiry Date is required';
+            }
+            break;
+        case 'Phone_Number':
+            if (!this.student_[field]) {
+                message = 'Mobile No is required';
+            } else if (this.student_[field].length < 7) {
+                message = 'Mobile No Should have at least 7 digits';
+            } else if (!/^\d{7,}$/.test(this.student_[field])) {
+              message = 'Invalid Mobile No';
+          }
+            break;
+        default:
+            if (!this.student_[field]) {
+                message = `${field.replace(/_/g, ' ')} is required`;
+            }
+            break;
     }
-  }
+    
+    if (message) {
+        this.openDialog(message);
+        return; 
+    }
+}
 
  let FormatedDate= this.formatDate(this.student_.Expiry_Account_Date)
  console.log('FormatedDate: ', FormatedDate);
