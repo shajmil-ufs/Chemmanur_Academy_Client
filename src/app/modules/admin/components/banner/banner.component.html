@@ -33,10 +33,16 @@
 
 
     <img *ngIf="!isLoading" height=" 600px" [src]="filepath+Banner.filepath" alt="" srcset="">
+    <section *ngIf="isLoading"> 
+        <!-- component -->
+    <div class="bg-white rounded-lg shadow-md p-4 animate-pulse" >
+    <ng-container >
+    
+    
+    <div class="w-full h-64 bg-gray-300 rounded mb-2" ></div>
+    </ng-container>
+    </div>
+      </section>
 </section>
 
 
-<section *ngIf="isLoading">
-    <app-loading [isLoading]="isLoading"></app-loading>
-
-</section>

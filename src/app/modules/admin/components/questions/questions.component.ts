@@ -70,6 +70,7 @@ this.Entry_View=false;
 }
 Create_New()
 {
+  this.formType='bulk'
 this.Entry_View = true;
 this.Clr_questions();
 }
@@ -97,6 +98,7 @@ return index;
 // this.questions_.Answer_Description="";
 this.questions_Array=[]
 this.Department_Id=0
+
 this.questions_Array.push(new questions())
    this.Display_File_Name_=''
 
@@ -164,7 +166,7 @@ Save_questions()
 {
 
   console.log('this.Department_Id: ', this.department_Data);
-  this.questions_Array[0].Department_Id=this.Department_Id
+  this.questions_Array[0].Department_Id=Number(this.Department_Id)
   console.log('this.questions_Array[0].Department_Id: ', this.questions_Array[0].Department_Id);
 
 let dialogRef;
@@ -174,16 +176,31 @@ if (this.formType === 'bulk') {
     if (!this.questions_Array[0].Department_Id) {
       this.openDialog('Department is required');
       return;
+    }else if(!  this.questions_Array[0].file){
+      this.openDialog('Document  is required');
+      return;
     }
   } else {
-    const requiredFields = ['Question_Text', 'Option1', 'Option2', 'Option3', 'Option4', 'Correct_Answer', 'Department_Id'];
+    const requiredFields = ['Question_Text', 'Option1', 'Option2', 'Option3', 'Option4', 'Correct_Answer', 'Department_Id','Answer_Description'];
+    const fieldErrorMessages = {
+      Option1: 'Option 1 is required',
+      Option2: 'Option 2 is required',
+      Option3: 'Option 3 is required',
+      Option4: 'Option 4 is required',
+      
+      Department_Id: 'Department is required'
+      // Add more field-error message pairs as needed
+  };
   
     console.log('this.questions_Array: ', this.questions_Array);
     for (const field of requiredFields) {
+ 
+      console.log('this.questions_Array[0][field]: ', this.questions_Array[0][field]);
       if (!this.questions_Array[0][field]) {
-        this.openDialog(`${field.replace('_', ' ')} is required`);
+        const errorMessage = fieldErrorMessages[field] || `${field.replace('_', ' ')} is required`;
+        this.openDialog(errorMessage);
         return;
-      }
+    }
     }
   }
   
@@ -215,7 +232,9 @@ Edit_questions(questions_e:questions,index)
   this.formType='individual'
 this.Entry_View=true;
 this.questions_Array[0]=questions_e
+
 this.questions_=questions_e;
+this.Department_Id=questions_e.Department_Id
 this.questions_=Object.assign({},questions_e);
 // this.Close_Click()
 // this.Clr_questions()

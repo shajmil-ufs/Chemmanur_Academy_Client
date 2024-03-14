@@ -96,6 +96,9 @@ this.presentations_.file=null;
 this.presentations_.Department_Id=0;
 this.presentations_.Delete_Status="";
 
+
+this.page=1
+
 }
 Search_presentations()
 {
@@ -152,7 +155,7 @@ this.issLoading=false;
 
 Save_presentations(){
   const requiredFields = ['Name','Department_Id', ];
-  
+  this.issLoading=true;
   for (const field of requiredFields) {
     if (!this.presentations_[field]) {
       
@@ -196,6 +199,8 @@ const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogb
 }
 Edit_presentations(presentations_e:presentations,index)
 {
+  this.page=1
+
 this.Entry_View=true;
 
 this.presentations_=presentations_e;
@@ -216,15 +221,27 @@ this.issLoading=false;
  });
 }
 handleFileInput(event: any): void {
-    this.fileChanged=true
-    const file = event.target.files[0]; // Get the first file selected by the user
-    if (file) {
-    this.presentations_.File_Name=file.name
-    this.presentations_.file=file
-      console.log(file);
-     
-    }
+  this.fileChanged = true;
+  const file = event.target.files[0]; 
+  if (file) {
+      if (file.size > 5 * 1024 * 1024) { // Check if file size exceeds 5 MB
+
+
+        const dialogRef = this.dialogBox.open(DialogBox_Component, {
+          panelClass: 'dialogbox-class',
+          data: {Message: 'File size exceeds 5 MB. Please select a smaller file.',Type: "3" }
+        });
+          alert();
+          this.fileChanged = false;
+
+      } else {
+          this.presentations_.File_Name = file.name;
+          this.presentations_.file = file;
+          console.log(file);
+      }
   }
+}
+
   upload(){
     this.issLoading=true
     

@@ -1,8 +1,7 @@
-
-
+<section *ngIf="!issLoading"> 
 <section *ngIf="!Entry_View">
 
-    <h2 class="">Choose A department</h2>
+    <h2 class="">Choose any Department</h2>
     <div (click)="ShowQuestion(department?.Department_Id)"  *ngFor="let department of department_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8 cursor-pointer font-bold hover:bg-slate-400">
     <div class="flex justify-between ">
         <span>
@@ -91,4 +90,16 @@
 
       
           
+    </section>
+
+
+</section>    <section *ngIf="issLoading"> 
+      <!-- component -->
+<div class="bg-white rounded-lg shadow-md p-4 animate-pulse" >
+<ng-container *ngFor="let i of [1,1,1,1,1,1]">
+
+  
+  <div class="w-full h-24 bg-gray-300 rounded mb-2" ></div>
+</ng-container>
+</div>
     </section>

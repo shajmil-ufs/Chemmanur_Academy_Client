@@ -86,7 +86,6 @@ return index;
  {
 this.student_question_bank_.QuestionBank_Id=0;
 this.student_question_bank_.Student_Id=0;
-this.student_question_bank_.Question_Id=0;
 this.student_question_bank_.Chosen_Option=0;
 this.student_question_bank_.correct_Option=0;
 
@@ -114,12 +113,14 @@ this.issLoading=false;
 Search_student_question_bank(dept_Id)
 {
 this.issLoading=true;
-this.student_question_bank_Service_.Search_student_question_bank_By_DeptId(dept_Id).subscribe(Rows => {
+console.log('this.student_question_bank_.Question_Id: ', this.student_question_bank_.Question_Id);
+this.student_question_bank_Service_.Search_student_question_bank_By_DeptId(dept_Id,this.student_question_bank_.Question_Id??0).subscribe(Rows => {
  this.student_question_bank_Data=Rows[0];
  console.log('this.student_question_bank_Data: ', this.student_question_bank_Data);
 this.Total_Entries=this.student_question_bank_Data.length;
 if(this.student_question_bank_Data.length==0)
 {
+
 this.issLoading=false;
 const dialogRef = this.dialogBox.open
 ( DialogBox_Component, {panelClass:'Dialogbox-Class'
@@ -129,6 +130,7 @@ return
 
 }
 this.student_question_bank_.Question_Id=this.student_question_bank_Data[0].Question_Id
+console.log('this.student_question_bank_.Question_Id: ', this.student_question_bank_.Question_Id);
 this.issLoading=false;
 this.Entry_View =true
 

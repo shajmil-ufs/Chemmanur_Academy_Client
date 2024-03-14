@@ -1,3 +1,5 @@
+<section *ngIf="!issLoading"> 
+
 <section *ngIf="!Entry_View">
     <!-- <section *ngIf="student_exams_.Exam_Id">
 
@@ -141,3 +143,15 @@
 
 
 </section>
+</section>
+
+<section *ngIf="issLoading"> 
+    <!-- component -->
+<div class="bg-white rounded-lg shadow-md p-4 animate-pulse" >
+<ng-container *ngFor="let i of [1,1,1,1,1,1]">
+
+
+<div class="w-full h-24 bg-gray-300 rounded mb-2" ></div>
+</ng-container>
+</div>
+  </section>

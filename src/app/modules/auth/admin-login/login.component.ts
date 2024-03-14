@@ -61,19 +61,25 @@ this.router.navigateByUrl("/admin")
       userType:1
     }
     this.isLoading = true;
-    const success = await this.authService_.Generate_forget_Password(payload);
-    console.log('success: ', success);
-    if(success)
-    {
+    try {
+      const success = await this.authService_.Generate_forget_Password(payload);
+      console.log('success: ', success);
+      if(success)
+      {
+        this.isLoading=false
+      
+        const dialogRef = this.dialog.open
+        ( DialogBox_Component, {panelClass:'Dialogbox-Class'
+        ,data:{Message:'Email Sent',Type:"False"}});
+      } else{
+        this.isLoading=false
+      }
+  
+    } catch (error) {
       this.isLoading=false
-    
-      const dialogRef = this.dialog.open
-      ( DialogBox_Component, {panelClass:'Dialogbox-Class'
-      ,data:{Message:'Email Sent',Type:"False"}});
-    } else{
-      this.isLoading=false
-    }
 
+    }
+   
 
 }
 }

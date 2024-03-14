@@ -57,18 +57,33 @@ Search_carousel(){
     this.Banner.fileChanged = true;
     const file = event.target.files[0]; // Get the first file selected by the user
     if (file) {
+
+
+      console.log('file.size: ', file.size);
+      console.log(' 5 * 1024 * 1024: ',  5 * 1024 * 1024);
+      if (file.size > 5 * 1024 * 1024) { // Check if file size exceeds 5 MB
+
+
+        const dialogRef = this.dialog.open(DialogBox_Component, {
+          panelClass: 'dialogbox-class',
+          data: {Message: 'File size exceeds 5 MB. Please select a smaller file.',Type: "3" }
+        });
+
+      } else{
+
         // Check if the file type is an image
         if (file.type.startsWith('image/')) {
-            this.Banner.File_Name = file.name;
-            this.Banner.file = file;
-            console.log('File:', file);
+          this.Banner.File_Name = file.name;
+          this.Banner.file = file;
+          console.log('File:', file);
         } else {
-            // File type is not supported (not an image)
-            const dialogRef = this.dialog.open
-            ( DialogBox_Component, {panelClass:'Dialogbox-Class'
-            ,data:{Message:'Choose Image',Type:"3"}});
-            
-            
+          // File type is not supported (not an image)
+          const dialogRef = this.dialog.open
+          ( DialogBox_Component, {panelClass:'Dialogbox-Class'
+          ,data:{Message:'Choose Image',Type:"3"}});
+          
+          
+        }
             // You can also provide a user-friendly error message or handle the error in another way
         }
     }

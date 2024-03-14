@@ -5,7 +5,7 @@ export const environment = {
 	
 
 
-	BasePath: 'http://localhost:3514/',
+	BasePath: 'http://localhost:3520/',
     // BasePath:'https://academyapi.ufstech.in/',
 	
 	FilePath:'https://ufsnabeelphotoalbum.s3.us-east-2.amazonaws.com/',

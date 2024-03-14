@@ -40,6 +40,7 @@ export class NavbarComponent {
     { label: 'Sign Out', link: '#', action: 'logout' },
    
   ]:this.menuItems=[{ label: 'Dashboard', link: '/admin/exam', action: '' },
+  { label: 'PPT', link: '/user/ppt', action: '' },
   // { label: 'E-commerce', subItems: [
   //   { label: 'Products', link: '#',action: '' },
   //   { label: 'Billing', link: '#',action: '' },
@@ -47,7 +48,7 @@ export class NavbarComponent {
   // ] },
   { label: 'Question Bank', link: '/user/question_bank', action: '' },
   { label: 'Online Test', link: '/user/student-exam', action: '' },
-  { label: 'PPT', link: '/user/ppt', action: '' },
+
   { label: 'Sign Out', link: '#', action: 'logout' }]
 }
   toggleMenu() {

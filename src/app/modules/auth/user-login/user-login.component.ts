@@ -59,25 +59,39 @@ try {
   
 
   async Generate_forget_Password(){
+    console.log('this.loginForm: ', this.loginForm);
+    if(!this.loginForm.value.email){
+      const dialogRef = this.dialog.open
+      ( DialogBox_Component, {panelClass:'Dialogbox-Class'
+      ,data:{Message:'Enter Email Id',Type:"3"}});
+      return
+    }
     this.isLoading=true
     let payload={
       email:this.loginForm.value.email,
       userType:2
     }
     this.isLoading = true;
-    const success = await this.authService_.Generate_forget_Password(payload);
-    console.log('success: ', success);
-if(success)
-{
-  this.isLoading=false
+    console.log('  this.isLoading: ',   this.isLoading);
+    try {
+      const success = await this.authService_.Generate_forget_Password(payload);
+      console.log('success: ', success);
+  if(success)
+  {
+    this.isLoading=false
+  
+    const dialogRef = this.dialog.open
+    ( DialogBox_Component, {panelClass:'Dialogbox-Class'
+    ,data:{Message:'Email Sent',Type:"False"}});
+  } else{
+    this.isLoading=false
+  
+  }
+    } catch (error) {
+      this.isLoading=false
 
-  const dialogRef = this.dialog.open
-  ( DialogBox_Component, {panelClass:'Dialogbox-Class'
-  ,data:{Message:'Email Sent',Type:"False"}});
-} else{
-  this.isLoading=false
-
-}
+    }
+  
 
 
 }

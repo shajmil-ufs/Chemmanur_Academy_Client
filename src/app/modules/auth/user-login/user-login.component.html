@@ -2,12 +2,12 @@
     <div class="bg-white bg-opacity-90 rounded-lg shadow-lg p-6 sm:p-10 max-w-md w-full">
         <div class="text-center">
             <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-            <h2 class="mt-6 text-2xl font-bold text-gray-900">Student Login</h2>
+            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">{{forget_password_view?' Login to Your Account ':'Forgot Password?'}}</h2>
         </div>
 
         <form class="mt-8 space-y-6" [formGroup]="loginForm">
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                <label for="email" class="block text-sm font-medium leading-6 text-gray-900"> Email ID</label>
                 <div class="mt-1">
                     <input id="email" name="email" formControlName="email" type="email" autocomplete="email" required class="block w-full px-4 py-2 rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 placeholder-gray-400">
                 </div>
@@ -24,14 +24,14 @@
                     <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
                 <div class="mt-2">
-                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
                 </div>
             </div>
             <div *ngIf="forget_password_view">
                 <a (click)="forget_password_view=false">Back To Login</a>
 
                 <div class="mt-2">
-                    <button [disabled]="!loginForm.value.email" (click)="Generate_forget_Password()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send Link</button>
+                    <button  (click)="Generate_forget_Password()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send Link</button>
                 </div>
             </div>
         </form>

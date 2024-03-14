@@ -17,14 +17,14 @@
                 <div class="flex items-center justify-between">
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                     <div class="text-sm">
-                        <a (click)="forget_password_view=true" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                        <!-- <a (click)="forget_password_view=true" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a> -->
                     </div>
                 </div>
                 <div class="mt-2">
                     <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
                 <div class="mt-2">
-                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
                 </div>
             </div>
             <div *ngIf="forget_password_view">
