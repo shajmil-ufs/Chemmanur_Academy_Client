@@ -23,7 +23,7 @@ color = 'primary';
 mode = 'indeterminate';
 arrayBuffer:any;
 Display_File_Name_:string;
-file:File;
+file:any;
 Department_Id:number=0;
 value = 50;
 formType:string='bulk'
@@ -98,7 +98,7 @@ return index;
 // this.questions_.Answer_Description="";
 this.questions_Array=[]
 this.Department_Id=0
-
+this.file =null
 this.questions_Array.push(new questions())
    this.Display_File_Name_=''
 
@@ -172,11 +172,13 @@ Save_questions()
 let dialogRef;
 console.log('this.formType: ', this.formType);
 if (this.formType === 'bulk') {
+  console.log('this.file: ', this.file);
   console.log('this.questions_Array[0].Department_Id: ', this.questions_Array[0].Department_Id);
+  console.log('this.questions_Array: ', this.questions_Array);
     if (!this.questions_Array[0].Department_Id) {
       this.openDialog('Department is required');
       return;
-    }else if(!  this.questions_Array[0].file){
+    }else if(!this.file  ){
       this.openDialog('Document  is required');
       return;
     }
@@ -255,6 +257,7 @@ incomingfile(event) {
   this.issLoading=true;
 
     this.file=event.target.files[0];
+    console.log('this.file: ', this.file);
     
     this.Display_File_Name_ = this.file.name;
     
