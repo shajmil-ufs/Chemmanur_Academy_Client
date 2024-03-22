@@ -53,12 +53,20 @@ input[type="number"] {
     -moz-appearance: textfield;
     /* Firefox */
 }
-
+body{
+    background-color: #F7F9FB;
+}
 
 .heading-text{
     font-weight: 600;
     color: rgba(15, 16, 53, 1);
     font-size: 24px;
+}
+
+.text{
+    font-weight: 300;
+    color: rgba(15, 16, 53, 1);
+    font-size: 18px;
 }
 .box-shadow{
  box-shadow:0px 2px 8px 0px rgba(201, 201, 201, 0.15) ;   

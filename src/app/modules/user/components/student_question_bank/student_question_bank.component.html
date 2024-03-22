@@ -1,72 +1,90 @@
 <section *ngIf="!issLoading"> 
-<section *ngIf="!Entry_View">
+<section  class="box-border box-shadow p-8 grid lg:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-5 "  *ngIf="!Entry_View">
+  <div *ngFor="let dept of department_Data;let i = index"  class="shadow-sm  rounded-lg  border border-sky-blue  flex flex-col justify-between  bg-[#DCF2F13D]  h-72 text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]">
+   
 
-    <h2 class="">Choose any Department</h2>
-    <div (click)="ShowQuestion(department?.Department_Id)"  *ngFor="let department of department_Data;let i = index" class="shadow-sm mt-5 border border-gray-500 border-solid p-8 cursor-pointer font-bold hover:bg-slate-400">
-    <div class="flex justify-between ">
-        <span>
 
-            {{department.Department_Name}}
-        </span>
-        
+
+<div>
+
+
+    <div class="flex  h-14 mb-8  justify-between">
+
+   
+    <div class="flex flex-col gap-1">
+
+      <span class="text-[#7FC7D9] text-[18px]">{{i+1}}</span>
+     <span class="heading-text  flex items-center justify-center">
+      {{dept.Department_Name}}
+     </span>
     </div>
+    <div>
+      <img src="assets/images/icons/examtype.png" class="h-16 w-16" alt="Graph1" /> 
+
+    </div>
+  </div>
+  <hr class="text-[#DCF2F1] mb-4  border border-[#DCF2F1]">
+
+<p class="text">
+{{dept.Description}}
+</p>
+</div>
+
+  <div>
+    
+    <button (click)="ShowQuestion(dept?.Department_Id)"class="explore-btn" >Explore questions</button>
 
 
     
-    </div></section>
-    <section *ngIf="Entry_View">
-        <button class="bg-blue-500
-        hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Close_Click()">
-           Back
-           
-          </button>
-        <div class="container mx-auto mt-8">
-            <div class="w-full  rounded overflow-hidden shadow-lg">
-              <div class="bg-gray-200 px-6 py-4">
-                <p class="text-gray-700 font-semibold text-lg">{{ student_question_bank_Data[0].Question_Text }}</p>
+</div>
+</div>
+    
+   </section>
+    <section *ngIf="Entry_View" class=" p-3 ">
+      
+        <div class="container mx-auto  py-12 px-10 rounded-lg  bg-white">
+          <button class="bg-blue
+          hover:bg-600 text-white font-bold py-2 mb-6 px-4 rounded" (click)="Close_Click()">
+             Back
+             
+            </button>
+            <div class="w-full  rounded overflow-hidden shadow-lg mb-4" >
+              <div class="px-6 py-4">
+                <p class="heading-text  font-semibold text-lg" style="font-weight: 500;">{{ student_question_bank_Data[0].Question_Text }}</p>
               </div>
               <div class="px-6 py-4">
                 <div class="grid grid-cols-1 gap-4">
-                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(1), 'bg-red-200': isOptionChosen(1)}">
-                      <div>
-                        option 1
-                      </div>
-                      <div>
+                    <div (click)="toggleOption(1)" class="flex gap-3  p-3 box-border items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(1), 'bg-red-200': isOptionChosen(1)}">
+                     
+                      <div class="flex justify-between w-full rounded-lg">
 
-                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="1">
                         <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option1 }}</span>
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-light-blue" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="1">
                       </div>
-                    </label>
-                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(2), 'bg-red-200': isOptionChosen(2)}">
-                      <div>
-                        option 2
-                      </div>
-                      <div>
+                    </div>
+                    <div (click)="toggleOption(2)" class="flex gap-3  p-3 box-border items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(2), 'bg-red-200': isOptionChosen(2)}">
+                  
+                      <div class="flex justify-between w-full rounded-lg">
 
-                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="2">
                         <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option2 }}</span>
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-light-blue" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="2">
                       </div>
-                    </label>
-                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(3), 'bg-red-200': isOptionChosen(3)}">
-                      <div>
-                        option 3
-                      </div>
-                      <div>
+                    </div>
+                    <div  (click)="toggleOption(3)" class="flex gap-3  p-3 box-border items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(3), 'bg-red-200': isOptionChosen(3)}">
+                     
+                      <div class="flex justify-between w-full rounded-lg">
 
-                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="3">
                         <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option3 }}</span>
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-light-blue" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="3">
                       </div>
-                    </label>
-                    <label class="flex gap-3 items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(4), 'bg-red-200': isOptionChosen(4)}">
-                      <div>
-                        option 4
-                      </div>
-                      <div>
+                    </div>
+                    <div  (click)="toggleOption(4)" class="flex gap-3  p-3 box-border items-center cursor-pointer" [ngClass]="{'bg-green-200': isOptionCorrect(4), 'bg-red-200': isOptionChosen(4)}">
+                      <div class="flex justify-between w-full rounded-lg">
 
-                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-indigo-600" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="4">
                         <span class="ml-2 text-gray-800">{{ student_question_bank_Data[0].Option4 }}</span>
+                        <input [disabled]="student_question_bank_.QuestionBank_Id" type="radio" class="form-radio h-5 w-5 text-light-blue" name="options" [(ngModel)]="student_question_bank_.Chosen_Option" [value]="4">
                       </div>
-                    </label>
+                    </div>
                   </div>
 
 
@@ -76,18 +94,22 @@
                   
               </div>
             </div>
-          </div>
-          <button *ngIf="!student_question_bank_.QuestionBank_Id" class="bg-blue-500
-          hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Save_student_question_bank()">
-             Submit
-             
-            </button>
-            <button *ngIf="student_question_bank_.QuestionBank_Id" class="bg-blue-500
-          hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="ShowQuestion(selectedDept)">
-             Next
-             
-            </button>
+            <div class="w-full flex justify-end ">
 
+        
+            <button *ngIf="!student_question_bank_.QuestionBank_Id" class="bg-blue
+            hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="Save_student_question_bank()">
+               Submit
+               
+              </button>
+              <button *ngIf="student_question_bank_.QuestionBank_Id" class="bg-blue
+            hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="ShowQuestion(selectedDept)">
+               Next
+               
+              </button>
+            </div>
+          </div>
+        
       
           
     </section>

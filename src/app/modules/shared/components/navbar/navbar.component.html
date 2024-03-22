@@ -35,15 +35,15 @@
                 </div>
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                   <div class="px-4 py-3" role="none">
-                    <p class="text-sm text-gray-900 dark:text-white" role="none">
+                    <!-- <p class="text-sm text-gray-900 dark:text-white" role="none">
                       Neil Sims
                     </p>
                     <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
                       neil.sims@flowbite.com
-                    </p>
+                    </p> -->
                   </div>
                   <ul class="py-1" role="none">
-                    <li>
+                    <!-- <li>
                       <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
                     </li>
                     <li>
@@ -51,9 +51,9 @@
                     </li>
                     <li>
                       <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
-                    </li>
+                    </li> -->
                     <li>
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                      <a href="#" (click)="  logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
                     </li>
                   </ul>
                 </div>
@@ -76,7 +76,7 @@
             <ng-container *ngFor="let item of menuItems">
 
     <li *ngIf="!item.subItems" (click)="performAction(item.label)">
-        <a [routerLink]="[item.link]" routerLinkActive="router-link-active" class="flex items-center p-2 rounded-lg hover:bg-sky-blue  hover:text-dark-blue  hover:font-bold  group">
+        <a [routerLink]="[item.link]" routerLinkActive="router-link-active" class="flex items-center p-2 rounded-lg hover:bg-[#7FC7D91A]  hover:text-dark-blue  hover:font-bold  group">
             <span class="flex gap-2 ms-5  h-5 whitespace-nowrap text-blue  ">
                             <img [src]="getImageSource(item.label, isActive(item.link))" style="height: 100% !important;" alt="" srcset="">
 

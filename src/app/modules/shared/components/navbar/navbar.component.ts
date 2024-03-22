@@ -45,26 +45,26 @@ getImageSource(label: string, isActive: boolean): string {
   if (isActive) {
     switch (label) {
       case 'Dashboard':
-        return 'assets/images/icons/dashboard-active.png';
+        return 'assets/images/navbar/dashboard-active.png';
         case 'PPT':
-        return 'assets/images/icons/ppt-active.png';
+        return 'assets/images/navbar/ppt-active.png';
       case 'Question Bank':
-        return 'assets/images/icons/questionBank-active.png';
+        return 'assets/images/navbar/questionBank-active.png';
       case 'Online Test':
-        return 'assets/images/icons/onlineTest-active.png';
+        return 'assets/images/navbar/onlineTest-active.png';
       default:
         return ''; // Handle other cases if needed
     }
   } else {
     switch (label) {
       case 'Dashboard':
-     return 'assets/images/icons/dashboard.png';
+     return 'assets/images/navbar/dashboard.png';
       case 'PPT':
-        return 'assets/images/icons/ppt.png';
+        return 'assets/images/navbar/ppt.png';
       case 'Question Bank':
-        return 'assets/images/icons/questionBank.png';
+        return 'assets/images/navbar/questionBank.png';
       case 'Online Test':
-        return 'assets/images/icons/onlineTest.png';
+        return 'assets/images/navbar/onlineTest.png';
       default:
         return ''; // Handle other cases if needed
     }

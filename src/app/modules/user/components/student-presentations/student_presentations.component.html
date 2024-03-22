@@ -5,12 +5,20 @@
 
  <section *ngIf="!issLoading"> 
   
-<section *ngIf="!Entry_View">
-  <h2 class="">Choose any Department</h2>
+<section class="box-border box-shadow p-4" *ngIf="!Entry_View">
+ 
 
     
-    <div *ngFor="let dept of department_Data;let i = index"  class="shadow-sm mt-5 border border-gray-500 border-solid p-8 cursor-pointer font-bold hover:bg-slate-400" (click)="viewPPT(dept.Department_Id)">
+    <div *ngFor="let dept of department_Data;let i = index"    class="shadow-sm mt-5 border border-sky-blue bg-[#DCF2F13D]  text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]" (click)="viewPPT(dept.Department_Id)">
+      
+      <div class="flex gap-4">
+
+        <img src="assets/images/dept/health.svg" class="h-16 w-16" alt="Graph1" /> 
+        
+       <span class="heading-text  flex items-center justify-center">
         {{dept.Department_Name}}
+       </span>
+      </div>
 
 
     
@@ -23,9 +31,15 @@
                Back
                
               </button>
-             <div *ngFor="let ppt of presentations_Data" class="shadow-sm mt-5 border border-gray-500 border-solid p-8" (click)="ShowpdfPreview(ppt)">
-              {{ppt.Name}} 
-              
+             <div *ngFor="let ppt of presentations_Data"  class="shadow-sm mt-5 border border-sky-blue bg-[#DCF2F13D]  text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]"(click)="ShowpdfPreview(ppt)">
+              <div class="flex gap-4">
+
+                <img src="assets/images/icons/ppt.svg" class="h-16 w-16" alt="Graph1" /> 
+                
+               <span class="heading-text  flex items-center justify-center">
+                {{ppt.Name}} 
+              </span>
+              </div>
             </div>
           </section>
           <div id="outerContainer" *ngIf="pdfPreview">

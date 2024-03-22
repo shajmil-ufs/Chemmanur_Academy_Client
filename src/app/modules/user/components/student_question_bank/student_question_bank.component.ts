@@ -220,6 +220,9 @@ isOptionCorrect(optionNumber: number): boolean {
   isOptionChosen(optionNumber: number): boolean {
     return this.student_question_bank_.Chosen_Option === optionNumber &&this.student_question_bank_.QuestionBank_Id>0  &&  this.student_question_bank_.correct_Option != optionNumber ;
   }
+  toggleOption(option: number) {
+    this.student_question_bank_.Chosen_Option = option;
+  }
   
 }
 

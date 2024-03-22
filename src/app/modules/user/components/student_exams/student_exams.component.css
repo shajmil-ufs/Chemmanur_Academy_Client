@@ -12,8 +12,9 @@
   
   [role="progressbar"] {
     --percentage: var(--value);
-    --primary: #369;
-    --secondary: #adf;
+    --primary: #2BAA20;
+    --secondary: #EFF0F6
+    ;
     --size: 300px;
     animation: progress 2s 0.5s forwards;
     width: var(--size);

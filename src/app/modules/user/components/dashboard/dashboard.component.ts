@@ -62,7 +62,7 @@ export class DashboardComponent {
     this.Student_Exam_Eligibility_Check();
 
   }
-
+ 
   clear_Banner(){
     this.Banner={
       id:0,
