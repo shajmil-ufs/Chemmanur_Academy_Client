@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { IsActiveMatchOptions, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,19 +8,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   menuOpen: boolean = false;
-  // menuItems = [
-  //   { label: 'Dashboard', link: 'dash' ,action: ''},
-  //   // { label: 'E-commerce', subItems: [
-  //   //   { label: 'Products', link: '#',action: '' },
-  //   //   { label: 'Billing', link: '#',action: '' },
-  //   //   { label: 'Invoice', link: '#',action: '' }
-  //   // ] },
- 
-  //   { label: 'Exams', link: 'admin/exam' ,action: '' },
-  //   { label: 'Sign Out', link: '#', action: 'logout' }
-  // ];
   menuItems:any = [];
   user =localStorage.getItem('User_Type')
+  title: string='Dashboard';
   
   constructor(
     private router: Router,
@@ -39,7 +29,7 @@ export class NavbarComponent {
     { label: 'Question', link: '/admin/question', action: '' },
     { label: 'Sign Out', link: '#', action: 'logout' },
    
-  ]:this.menuItems=[{ label: 'Dashboard', link: '/admin/exam', action: '' },
+  ]:this.menuItems=[{ label: 'Dashboard', link: '/user/dash', action: '' },
   { label: 'PPT', link: '/user/ppt', action: '' },
   // { label: 'E-commerce', subItems: [
   //   { label: 'Products', link: '#',action: '' },
@@ -51,6 +41,47 @@ export class NavbarComponent {
 
   { label: 'Sign Out', link: '#', action: 'logout' }]
 }
+getImageSource(label: string, isActive: boolean): string {
+  if (isActive) {
+    switch (label) {
+      case 'Dashboard':
+        return 'assets/images/icons/dashboard-active.png';
+        case 'PPT':
+        return 'assets/images/icons/ppt-active.png';
+      case 'Question Bank':
+        return 'assets/images/icons/questionBank-active.png';
+      case 'Online Test':
+        return 'assets/images/icons/onlineTest-active.png';
+      default:
+        return ''; // Handle other cases if needed
+    }
+  } else {
+    switch (label) {
+      case 'Dashboard':
+     return 'assets/images/icons/dashboard.png';
+      case 'PPT':
+        return 'assets/images/icons/ppt.png';
+      case 'Question Bank':
+        return 'assets/images/icons/questionBank.png';
+      case 'Online Test':
+        return 'assets/images/icons/onlineTest.png';
+      default:
+        return ''; // Handle other cases if needed
+    }
+  }
+}
+isActive(link: string): boolean {
+  const options: IsActiveMatchOptions = {
+    paths: 'exact', // Ensure the entire path matches exactly
+    queryParams: 'exact', // Ensure the query parameters match exactly
+    fragment: 'ignored', // Ignore the fragment (hash) part of the URL
+    matrixParams: 'ignored' // Ignore matrix parameters
+  };
+
+  console.log('this.router.isActive(link, options): ', this.router.isActive(link, options));
+  return this.router.isActive(link, options); 
+}
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
@@ -67,24 +98,12 @@ export class NavbarComponent {
                     this.router.navigateByUrl('auth')
                 }
   }
-  performAction(action: string) {
-    
-    console.log('action: ', action);
-    switch(action) {
-      case 'goToDashboard':
-        // this.router.navigateByUrl('admin/exam')
-        // Handle go to dashboard action
-        break;
-      case 'viewProducts':
-        // Handle view products action
-        break;
-      case 'viewBilling':
-        // Handle view billing action
-        break;
-      case 'viewInvoice':
-        // Handle view invoice action
-        break;
-      case 'logout':
+  performAction(nav: string) {
+    this.title=nav
+
+    switch(nav) {
+   
+      case 'Sign Out':
         this.logout()
         break;
       default:
