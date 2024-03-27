@@ -22,7 +22,7 @@ module.exports = {
       },
       'sky-blue': {
         DEFAULT: '#DCF2F1',
-      },
+      }, 
     },
     
     extend: {

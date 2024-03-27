@@ -50,8 +50,6 @@ this.Page_Load()
 }
 Page_Load()
 {
-this.myInnerHeight = (window.innerHeight);
-this.myInnerHeight = this.myInnerHeight - 200;
 this.Clr_department();
 this.Search_department();
 this.Entry_View=false;

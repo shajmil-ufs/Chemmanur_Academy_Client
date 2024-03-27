@@ -18,10 +18,10 @@
         
     </div>
 </section> -->
-    <section  class="box-border box-shadow p-4"  *ngIf="!student_exams_.Exam_Id">
+    <section  class="box-border box-shadow p-4 rounded-lg"   *ngIf="!student_exams_.Exam_Id">
 
 
-        <div  (click)="Search_student_exams_questions(examType)"*ngFor="let examType of examTypes; let i = index"class="shadow-sm mt-5 border border-sky-blue   bg-[#DCF2F13D]  text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]">
+        <div  (click)="Search_student_exams_questions(examType)"*ngFor="let examType of examTypes; let i = index"class="shadow-sm mb-5 border border-sky-blue   bg-[#DCF2F13D]  text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]">
               <div class="flex gap-4">
 
                 <img src="assets/images/icons/examtype.png" class="h-16 w-16" alt="Graph1" /> 
@@ -99,7 +99,7 @@
                     
                 </div>
                 <div class="mt-4 flex gap-5 w-full justify-end " *ngIf="examStarted">
-                    <button class="bg-blue
+                    <button class="bg-gray-600
                     hover:bg-600 text-white font-bold py-2 px-4 rounded" *ngIf="currentQuestionIndex <= student_exams_Data.length - 1 && currentQuestionIndex !=0 && student_exams_.Duration > 0" (click)="currentQuestionIndex=currentQuestionIndex-1">Prev</button>
                     <button class="bg-blue
                     hover:bg-600 text-white font-bold py-2 px-4 rounded" *ngIf="currentQuestionIndex < student_exams_Data.length - 1 && student_exams_.Duration > 0" (click)="currentQuestionIndex=currentQuestionIndex+1">Next</button>

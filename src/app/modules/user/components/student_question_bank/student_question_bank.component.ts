@@ -223,6 +223,11 @@ isOptionCorrect(optionNumber: number): boolean {
   toggleOption(option: number) {
     this.student_question_bank_.Chosen_Option = option;
   }
-  
-}
+  truncateText(text: string, maxLength: number): string {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    } else {
+      return text;
+    }
+}}
 

@@ -1,5 +1,5 @@
 <section *ngIf="!issLoading"> 
-<section  class="box-border box-shadow p-8 grid lg:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-5 "  *ngIf="!Entry_View">
+<section  class="box-border box-shadow p-8 grid xl:grid-cols-3   md:grid-cols-2 grid-cols-1 gap-5 "  *ngIf="!Entry_View">
   <div *ngFor="let dept of department_Data;let i = index"  class="shadow-sm  rounded-lg  border border-sky-blue  flex flex-col justify-between  bg-[#DCF2F13D]  h-72 text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]">
    
 
@@ -11,7 +11,7 @@
     <div class="flex  h-14 mb-8  justify-between">
 
    
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col  gap-1">
 
       <span class="text-[#7FC7D9] text-[18px]">{{i+1}}</span>
      <span class="heading-text  flex items-center justify-center">
@@ -19,14 +19,21 @@
      </span>
     </div>
     <div>
-      <img src="assets/images/icons/examtype.png" class="h-16 w-16" alt="Graph1" /> 
+      <img src="assets/images/icons/examtype.png" class="h-16 w-16 max-w-16" alt="Graph1" /> 
 
     </div>
   </div>
   <hr class="text-[#DCF2F1] mb-4  border border-[#DCF2F1]">
 
-<p class="text">
-{{dept.Description}}
+<p class="text "style="
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  word-wrap: break-word;
+  width: 100%; /* or specify a fixed width */
+
+">
+{{ truncateText(dept.Description, 78) }} 
 </p>
 </div>
 

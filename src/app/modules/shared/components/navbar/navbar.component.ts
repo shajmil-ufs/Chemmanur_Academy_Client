@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IsActiveMatchOptions, Router } from '@angular/router';
+import { BaseApi } from '../../services/_BaseApi.Service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   menuOpen: boolean = false;
   menuItems:any = [];
   user =localStorage.getItem('User_Type')
   title: string='Dashboard';
-  
+  data:any
   constructor(
     private router: Router,
+    private dataService:BaseApi
+
 
 ) {  
 
@@ -41,6 +44,13 @@ export class NavbarComponent {
 
   { label: 'Sign Out', link: '#', action: 'logout' }]
 }
+  
+
+ngOnInit(): void {
+  this.title = this.dataService.getNav();
+  
+  
+  }
 getImageSource(label: string, isActive: boolean): string {
   if (isActive) {
     switch (label) {
@@ -78,7 +88,6 @@ isActive(link: string): boolean {
     matrixParams: 'ignored' // Ignore matrix parameters
   };
 
-  console.log('this.router.isActive(link, options): ', this.router.isActive(link, options));
   return this.router.isActive(link, options); 
 }
 
@@ -100,6 +109,7 @@ isActive(link: string): boolean {
   }
   performAction(nav: string) {
     this.title=nav
+  localStorage.setItem('NavTitle',nav)
 
     switch(nav) {
    

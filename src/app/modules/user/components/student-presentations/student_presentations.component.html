@@ -5,11 +5,11 @@
 
  <section *ngIf="!issLoading"> 
   
-<section class="box-border box-shadow p-4" *ngIf="!Entry_View">
+<section class="box-border rounded-lg box-shadow p-4" *ngIf="!Entry_View">
  
 
     
-    <div *ngFor="let dept of department_Data;let i = index"    class="shadow-sm mt-5 border border-sky-blue bg-[#DCF2F13D]  text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]" (click)="viewPPT(dept.Department_Id)">
+    <div *ngFor="let dept of department_Data;let i = index"    class="shadow-sm mb-5 border border-sky-blue bg-[#DCF2F13D]  text-dark-blue border-solid p-8 cursor-pointer font-bold hover:bg-[#7FC7D91A]" (click)="viewPPT(dept.Department_Id)">
       
       <div class="flex gap-4">
 
@@ -44,17 +44,18 @@
           </section>
           <div id="outerContainer" *ngIf="pdfPreview">
             <button class="bg-blue-500
-         hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="pdfPreview=false">
+         hover:bg-600 text-white font-bold py-2 px-4 rounded" (click)="pdfPreview=false;isLoaded=false">
             Back
             
            </button>
-            <div class="pdf-container">
-                <div *ngIf="isLoaded && selectedpdf.Path" style="text-align: center;">
-                    <button (click)="prevPage()" [disabled]="page === 1">Prev</button>
-                    <span>{{ page }} / {{ totalPages }}</span>
-                    <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
-                  </div>
-                  <div *ngIf="!isLoaded" class="w-full h-36 bg-gray-300 rounded mb-2" ></div>
+           <div *ngIf="!isLoaded" class="w-full h-36 bg-gray-300 rounded mb-2" ></div>
+            <div class="pdf-container flex justify-center items-center gap-6">
+        
+                    <button *ngIf="isLoaded && selectedpdf.Path" class="rounded-lg p-3 bg-blue text-white  h-12" (click)="prevPage()" [disabled]="page === 1"><span class="material-symbols-outlined">
+                      keyboard_arrow_left
+                      </span></button>
+            
+                
 
                   <pdf-viewer                [src]="filepath+selectedpdf.Path"
 
@@ -64,7 +65,16 @@
                               [page]="page"
                               (after-load-complete)="afterLoadComplete($event)"
                   ></pdf-viewer>
+                  <button class="rounded-lg p-3 bg-blue text-white h-12" (click)="nextPage()"*ngIf="isLoaded && selectedpdf.Path" [disabled]="page === totalPages"><span class="material-symbols-outlined">
+                    keyboard_arrow_right
+                    </span></button>
+
             </div>
+            <div class="w-full text-center" *ngIf="isLoaded && selectedpdf.Path">
+
+              <span class=" w-full">{{ page }} / {{ totalPages }}</span>
+            </div>
+
           </div>
           
     </section>

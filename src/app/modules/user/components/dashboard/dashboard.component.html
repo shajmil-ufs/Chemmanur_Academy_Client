@@ -4,18 +4,32 @@
 <main class="">
     
 <div *ngIf="!this.isLoading">
-    <section>           <img class="rounded-lg" [src]="filepath+Banner.filepath" style="  height:420px;
+    <section>           <img class="rounded-lg h-full" [src]="filepath+Banner.filepath" style="  
       width: 100%;
-      object-fit: cover; 
+      height: 400px;
       " alt="" srcset="">
     </section>
     <section class="mt-3">
         
-        <div *ngIf="studentEligibity.No_Of_Exam >= studentEligibity.Minimum_No_Of_Exam_ && studentEligibity.Eligibility === 1" class="bg-green-500 text-white text-center py-4 rounded-lg ">
-            <p class="text-lg font-semibold">You are eligible</p>
+        <div *ngIf="studentEligibity.No_Of_Exam >= studentEligibity.Minimum_No_Of_Exam_ && studentEligibity.Eligibility === 1" class="bg-[#2BAA201A] text-white flex gap-3  p-4 rounded-lg ">
+          <img src="assets/images/icons/Check.svg" class="h-6 w-6" alt="Graph1" /> 
+
+          <div>
+
+  <p class="text-lg font-semibold mb-0 ">Congrats!!</p>
+  <p  class="text-[#0F1035CC] ">You are eligible to attend the examination</p>
+</div>
           </div>
-          <div *ngIf="studentEligibity.No_Of_Exam  >= studentEligibity.Minimum_No_Of_Exam_ && studentEligibity.Eligibility !== 1" class="bg-red-200 text-red-800 text-center py-4 rounded-lg " >
-            <p class="text-lg font-semibold">You are not eligible</p>
+          <div *ngIf="studentEligibity.No_Of_Exam  >= studentEligibity.Minimum_No_Of_Exam_ && studentEligibity.Eligibility !== 1" class="bg-[#D11A2A1A] text-red-800 flex  gap-3 p-4 rounded-lg " >
+                       <img src="assets/images/icons/close.svg" class="h-6 w-6" alt="Graph1" /> 
+
+            <div> 
+
+    <p class="text-lg font-semibold mb-0 ">Sorry!!!!</p>
+    <p class="text-[#0F1035CC] ">
+      You are not eligible to attend the examination
+    </p>
+  </div>
           </div>
           
           

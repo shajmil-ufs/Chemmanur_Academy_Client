@@ -4,7 +4,7 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subscribable, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, Subscribable, firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
@@ -16,9 +16,17 @@ export class BaseApi {
     constructor(
         private http: HttpClient,
     ) {
-
+this.setData(localStorage.getItem('NavTitle'))
     }
+    private dataSource = new BehaviorSubject<any>(null);
+    data$ = this.dataSource.asObservable();
+ setData(data: any) {
+    this.dataSource.next(data);
+  }
 
+  getNav() {
+    return this.dataSource.getValue();
+  }
       
       
       
