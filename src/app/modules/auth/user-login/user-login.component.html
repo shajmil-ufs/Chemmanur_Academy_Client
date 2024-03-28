@@ -24,7 +24,7 @@
                     <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue focus:border-blue sm:text-sm">
                 </div>
                 <div class="mt-2">
-                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center rounded-md bg-blue px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue">Login</button>
+                    <button [disabled]="loginForm.invalid" (click)="login()" class="flex w-full justify-center  disabled:bg-blue-200 rounded-md bg-blue px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue">Login</button>
                 </div>
             </div>
             <div *ngIf="forget_password_view">

@@ -42,6 +42,8 @@ try {
           localStorage.setItem("Access_Token", success.token);
           localStorage.setItem("User_Type","2");
           localStorage.setItem("Student_Id",success[0].Student_Id);
+          localStorage.setItem("Email",success[0].Email);
+          localStorage.setItem("Name",success[0].Student_Name);
           console.log('localStorage: ', localStorage);
   
   this.router.navigateByUrl("/user")

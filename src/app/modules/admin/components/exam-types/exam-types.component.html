@@ -28,28 +28,30 @@
 
         <form (ngSubmit)="saveExamType()">
             <div class="mb-4">
-                <label for="examTypeName" class="block text-sm font-medium text-gray-700">Exam Type </label>
+                <label for="examTypeName" class="block text-sm font-medium text-gray-700">Exam Type  <span class="text-red-700">*</span></label>
                 <input type="text" id="examTypeName" name="examTypeName" maxlength="50" [(ngModel)]="examType.Exam_Name" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             </div>
 
             <div class="mb-4">
-                <label for="passMark" class="block text-sm font-medium text-gray-700">Pass Mark</label>
-                <input type="number" id="passMark" name="passMark" maxlength="5" [(ngModel)]="examType.Pass_Mark" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
-
-            <div class="mb-4">
-                <label for="numberOfQuestions" class="block text-sm font-medium text-gray-700">No of Questions</label>
-                <input type="number" id="numberOfQuestions" name="numberOfQuestions" maxlength="5" [(ngModel)]="examType.No_Of_Questions" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
-
-            <div class="mb-4">
-                <label for="duration" class="block text-sm font-medium text-gray-700">Duration (in minutes)</label>
-                <input type="number" id="duration" name="duration" maxlength="5" [(ngModel)]="examType.Duration" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-            </div>
+                <label for="passMark" class="block text-sm font-medium text-gray-700">Pass Mark <span class="text-red-700">*</span></label>
+                <input type="number" id="passMark" name="passMark" maxlength="5" (input)="limitMaxLength($event,examType.Pass_Mark)" [(ngModel)]="examType.Pass_Mark"  class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
+              <div class="mb-4">
+                <label for="numberOfQuestions" class="block text-sm font-medium text-gray-700">No of Questions <span class="text-red-700">*</span></label>
+                <input type="number" id="numberOfQuestions" name="numberOfQuestions" maxlength="5" (input)="limitMaxLength($event, examType.No_of_Questions)" [(ngModel)]="examType.No_of_Questions"  class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
+              <div class="mb-4">
+                <label for="duration" class="block text-sm font-medium text-gray-700">Duration (in minutes) <span class="text-red-700">*</span></label>
+                <input type="number" id="duration" name="duration" maxlength="5" (input)="limitMaxLength($event,examType.Duration)" [(ngModel)]="examType.Duration" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+              </div>
+              
 
             <!-- Add other fields as needed -->
 
-            <button type="submit" [disabled]=" this.isLoading" class="hover:bg-indigo-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            <button type="submit" [disabled]=" this.isLoading" class="bg-blue
+            hover:bg-600 text-white font-bold py-2 px-4 rounded">
 Save      </button>
         </form>
     </section>

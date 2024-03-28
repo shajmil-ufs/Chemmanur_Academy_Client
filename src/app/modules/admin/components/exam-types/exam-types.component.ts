@@ -55,7 +55,7 @@ export class ExamTypesComponent implements OnInit {
     this.examType.Exam_Name = '';
     this.examType.Department_Id = 0;
     this.examType.Pass_Mark = 0;
-    this.examType.No_Of_Questions = 0;
+    this.examType.No_of_Questions = 0;
     this.examType.Duration = 0;
     // Add other properties of the examType and initial
   }
@@ -108,10 +108,20 @@ export class ExamTypesComponent implements OnInit {
       }
     });
   }
+  limitMaxLength(event: any,model): void {
+    const maxLength = 5;
+    if (event.target.value.length > maxLength) {
+      event.target.value = event.target.value.slice(0, maxLength); // Trim the input value
+      model = event.target.value; // Update the ngModel value
+    }
 
+
+
+
+  }
   saveExamType() {
 
-    const requiredFields = ['Exam_Name', 'Pass_Mark', 'No_Of_Questions', 'Duration',];
+    const requiredFields = ['Exam_Name', 'Pass_Mark', 'No_of_Questions', 'Duration',];
   
     for (const field of requiredFields) {
       if (!this.examType[field]) {

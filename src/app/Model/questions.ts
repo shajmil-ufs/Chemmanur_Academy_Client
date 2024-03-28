@@ -9,7 +9,7 @@ Option4:string='';
 Correct_Answer:number=0;
 Department_Id:number=0;
 Delete_Status:any=0;
-Answer_Description:string='';
+Rationales:string='';
 constructor(values: Object = {})  
 {
 Object.assign(this, values) 

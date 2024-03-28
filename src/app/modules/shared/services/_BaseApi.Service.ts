@@ -16,17 +16,8 @@ export class BaseApi {
     constructor(
         private http: HttpClient,
     ) {
-this.setData(localStorage.getItem('NavTitle'))
     }
-    private dataSource = new BehaviorSubject<any>(null);
-    data$ = this.dataSource.asObservable();
- setData(data: any) {
-    this.dataSource.next(data);
-  }
 
-  getNav() {
-    return this.dataSource.getValue();
-  }
       
       
       

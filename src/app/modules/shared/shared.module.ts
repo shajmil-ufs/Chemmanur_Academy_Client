@@ -40,7 +40,8 @@ export function playerFactory() {
     MatSlideToggleModule,
     MatDialogModule,
     ReactiveFormsModule,HttpClientModule,FormsModule, 
-
+    MatDatepickerModule,
+    MatNativeDateModule,
 
 
   ],
@@ -53,7 +54,8 @@ export function playerFactory() {
     NavbarComponent,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule,
+    MatInputModule,MatDatepickerModule,
+    MatNativeDateModule,
     MatSlideToggleModule,
     ReactiveFormsModule,HttpClientModule,FormsModule,MatDialogModule,DialogBox_Component,PdfViewerModule,LoadingComponent
 

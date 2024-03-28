@@ -102,7 +102,7 @@ this.file =null
 this.questions_Array.push(new questions())
    this.Display_File_Name_=''
 
-}
+} 
 Search_questions()
 {
 this.issLoading=true;
@@ -162,6 +162,44 @@ this.issLoading=false;
  });
 
 }
+
+
+
+
+
+
+
+
+private requiredFieldsForBulk = ['Question_Text', 'Option1', 'Option2', 'Option3', 'Option4', 'Correct_Answer', 'Rationales'];
+private requiredFieldsForSingle = ['Question_Text', 'Option1', 'Option2', 'Option3', 'Option4', 'Correct_Answer', 'Department_Id', 'Rationales'];
+
+private fieldErrorMessages = {
+  Option1: 'Option 1 is required',
+  Option2: 'Option 2 is required',
+  Option3: 'Option 3 is required',
+  Option4: 'Option 4 is required',
+  Department_Id: 'Department is required',
+};
+
+private getErrorMessage(field: string, rowNum?: number): string {
+  const errorMessage = this.fieldErrorMessages[field] || `${field.replace('_', ' ')} is required`;
+  return rowNum ? `${errorMessage} at Row ${rowNum}` : errorMessage;
+}
+
+private hasInvalidQuestion(requiredFields: string[]): boolean {
+  return this.questions_Array.some((question) => {
+    const invalidField = requiredFields.find((field) => !question[field]);
+    if (invalidField) {
+      const errorMessage = this.getErrorMessage(invalidField, question['__rowNum__']);
+      this.openDialog(errorMessage);
+      return true;
+    }
+    return false;
+  });
+}
+
+
+
 Save_questions()
 {
 
@@ -172,39 +210,26 @@ Save_questions()
 let dialogRef;
 console.log('this.formType: ', this.formType);
 if (this.formType === 'bulk') {
-  console.log('this.file: ', this.file);
-  console.log('this.questions_Array[0].Department_Id: ', this.questions_Array[0].Department_Id);
-  console.log('this.questions_Array: ', this.questions_Array);
-    if (!this.questions_Array[0].Department_Id) {
-      this.openDialog('Department is required');
-      return;
-    }else if(!this.file  ){
-      this.openDialog('Document  is required');
-      return;
-    }
+  if (!this.questions_Array[0].Department_Id) {
+    this.openDialog('Department is required');
+    return;
+  } else if (!this.file) {
+    this.openDialog('Choose File');
+    return;
   } else {
-    const requiredFields = ['Question_Text', 'Option1', 'Option2', 'Option3', 'Option4', 'Correct_Answer', 'Department_Id','Answer_Description'];
-    const fieldErrorMessages = {
-      Option1: 'Option 1 is required',
-      Option2: 'Option 2 is required',
-      Option3: 'Option 3 is required',
-      Option4: 'Option 4 is required',
-      
-      Department_Id: 'Department is required'
-      // Add more field-error message pairs as needed
-  };
-  
-    console.log('this.questions_Array: ', this.questions_Array);
-    for (const field of requiredFields) {
- 
-      console.log('this.questions_Array[0][field]: ', this.questions_Array[0][field]);
-      if (!this.questions_Array[0][field]) {
-        const errorMessage = fieldErrorMessages[field] || `${field.replace('_', ' ')} is required`;
-        this.openDialog(errorMessage);
-        return;
-    }
+    const hasInvalidBulkQuestion = this.hasInvalidQuestion(this.requiredFieldsForBulk);
+    if (!hasInvalidBulkQuestion) {
+      console.log('All questions are valid');
+    } else {
+      return;
     }
   }
+} else {
+  const hasInvalidSingleQuestion = this.hasInvalidQuestion(this.requiredFieldsForSingle);
+  if (hasInvalidSingleQuestion) {
+    return;
+  }
+}
   
 
 this.issLoading=true;
@@ -280,6 +305,27 @@ incomingfile(event) {
         var worksheet = workbook.Sheets[first_sheet_name];
         this.questions_Array=(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
         this.questions_Array.sort();
+        const expectedHeadings = [
+          'Question_Text',
+          'Option1',
+          'Option2',
+          'Option3',
+          'Option4',
+          'Correct_Answer',
+          'Rationales'
+        ];
+        const sheetHeadings = Object.keys(this.questions_Array[0]);
+    
+        if (sheetHeadings.length !== expectedHeadings.length || !sheetHeadings.every((heading, index) => heading === expectedHeadings[index])) {
+          this.openDialog('Invalid Excel sheet format. Please check the column headings.');
+          this.issLoading=false;
+  this.questions_Array=[]
+  this.file=null
+  this.Display_File_Name_=''
+  this.questions_Array.push(new questions())
+
+          return;
+        }
         this.issLoading=false;
 
    

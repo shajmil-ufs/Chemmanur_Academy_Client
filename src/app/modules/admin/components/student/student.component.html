@@ -15,7 +15,7 @@
         <div>
 
             <span class="muted">
-        EmailID : 
+        Email ID : 
     </span> {{student.Email}}
         </div>
         </span>
@@ -40,16 +40,17 @@
             Back
             
            </button>
-    <form #studentForm="ngForm">
+
         <div class="mb-4">
             <label for="studentName" class="block text-sm font-medium text-gray-700">  Student Name<span class="text-red-500">*</span></label>
             <input type="text" id="studentName" name="studentName" maxlength="50" [(ngModel)]="student_.Student_Name" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
         </div>
+        <form>
 
         <div class="mb-4">
             <label for="password" class="block text-sm font-medium text-gray-700">Password<span class="text-red-500">*</span></label>
             <div class="relative">
-                <input maxlength="50" [type]="passwordVisible?'text':'password'" id="password" name="password" [(ngModel)]="student_.Password" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+                <input maxlength="50" autocomplete="off" [type]="passwordVisible?'text':'password'" id="password" name="password" [(ngModel)]="student_.Password" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
                 <button type="button" class="absolute inset-y-0 right-0 flex items-center px-2 focus:outline-none" (click)="togglePasswordVisibility()">
 
                           <span class="material-symbols-outlined">
@@ -59,10 +60,10 @@
                   </button>
             </div>
         </div>
-
+</form>
         <div class="mb-4">
             <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Mobile  No<span class="text-red-500">*</span></label>
-            <input type="number" id="phoneNumber" name="phoneNumber" [(ngModel)]="student_.Phone_Number" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
+            <input type="number" id="phoneNumber" name="phoneNumber" (input)="limitMaxLength($event,student_.Phone_Number)" [(ngModel)]="student_.Phone_Number" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
         </div>
 
         <div class="mb-4">
@@ -71,14 +72,11 @@
         </div>
 
         <div class="mb-4">
-            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+            <label for="address" class="block text-sm font-medium text-gray-700">Address<span class="text-red-500">*</span></label>
             <input type="text" maxlength="150" id="address" name="address" [(ngModel)]="student_.Address" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
         </div>
 
-        <div class="mb-4">
-            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-            <input type="text" id="city" name="city" [(ngModel)]="student_.City" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
-        </div>
+      
 
         <!-- <div class="mb-4">
               <label for="state" class="block text-sm font-medium text-gray-700">State</label>
@@ -100,14 +98,25 @@
 
         <div class="mb-4">
             <label for="expiryAccountDate" class="block text-sm font-medium text-gray-700">Account Expiry Date<span class="text-red-500">*</span></label>
-            <input style="appearance: none;" type="date" id="expiryAccountDate" name="expiryAccountDate" [(ngModel)]="student_.Expiry_Account_Date" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring focus:ring-zinc-500 focus:ring-opacity-50"
-                placeholder="">
+        
+        <div  class="mt-1 p-1  flex w-full rounded-md border bg-white border-gray-300 shadow-sm">
+
+            <input class="w-full p-1 ps-3 focus:border-none focus focus:ring-zinc-500 focus:ring-opacity-50" 
+            [(ngModel)]="student_.Expiry_Account_Date" 
+            (mouseover)="openCalender(picker)"
+            (click)="picker.open()" 
+            matInput
+            [matDatepicker]="picker">
+     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+     <mat-datepicker #picker></mat-datepicker>
+                   
+                </div>
+           
         </div>
 
         <button (click)="Save_student()" class="bg-green-600	 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-zinc-500 focus:ring-opacity-50">
                Save
             </button>
-    </form>
 
 
 </section>

@@ -59,11 +59,11 @@ export class Eligibility_CriteriaComponent implements OnInit {
 
   searcheligibilityCriteria() {
     this.isLoading = true;
-    debugger
+    
     this.eligibilityCriteriaService.Search_Eligibility_Criteria('').subscribe(
       
       (data: any[]) => {
-        debugger
+        
         console.log('data: ', data[0]);
         console.log('data: ', data);
         this.eligibilityCriterias = data[0];
@@ -104,10 +104,10 @@ if(this.eligibilityCriterias.length){
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'Yes') {
         this.isLoading = true;
-        debugger
+        
         this.eligibilityCriteriaService.Delete_Eligibility_Criteria(eligibilityCriteriaId).subscribe(
           (data) => {
-            debugger
+            
             if (data[0][0].Eligibility_Criteria_Id_ > 0) {
               this.eligibilityCriterias.splice(this.editIndex, 1);
               this.openDialog('Deleted', 'false');
@@ -131,16 +131,16 @@ if(this.eligibilityCriterias.length){
   
     for (const field of requiredFields) {
       if (!this.eligibilityCriteria[field]) {
-        this.openDialog(`${field.replace('_', ' ')} is required`,'3');
+        this.openDialog(`${field.replace(/_/g, ' ')} is required`,'3');
         return;
       }
     }
     this.isLoading = true;
-    debugger
+    
     this.eligibilityCriteriaService.Save_Eligibility_Criteria(this.eligibilityCriteria).subscribe(
       
       (data) => {
-        debugger
+        
         console.log('data: ', data[0]); 
         if (data[0][0].Eligibility_Criteria_Id_ > 0) {
           // this.cleareligibilityCriteria();

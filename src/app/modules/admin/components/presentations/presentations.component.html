@@ -46,10 +46,20 @@
            </button>
         <form #presentationForm="ngForm" (ngSubmit)="Save_presentations()">
             <div class="mb-4">
-                <label for="presentationName" class="block text-sm font-medium text-gray-700">Presentation Name</label>
+                <label for="presentationName" class="block text-sm font-medium text-gray-700">Presentation Name<span class="text-red-500">*</span></label>
                 <input type="text" id="presentationName" maxlength="50" name="presentationName" [(ngModel)]="presentations_.Name" required class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             </div>
-
+            <div class="mb-4">
+                <label for="departmentId" class="block text-sm font-medium text-gray-700">Department<span class="text-red-500">*</span></label>
+  
+  
+                
+                <select id="Department_Id" name="Department_Id" [(ngModel)]="presentations_.Department_Id" required
+                        class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                        <option [value]="0" selected>Select</option>
+                  <option [value]="dept.Department_Id" *ngFor="let dept of department_Data">{{dept?.Department_Name}}</option>
+                </select>
+              </div>
             <div class="mb-4">
                 <!-- Label to display filename -->
                 <label class="block mt-1 w-full  border  rounded-md border-gray-700  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 cursor-pointer">
@@ -59,7 +69,7 @@
 
     <div class="bg-slate-300 p-2 rounded-md ">
         
-       Select Document
+       Select Document <span class="text-red-500">*</span>
     </div>
     <div class="p-2 ">
         
@@ -73,17 +83,7 @@
             </div>
 
 
-            <div class="mb-4">
-              <label for="departmentId" class="block text-sm font-medium text-gray-700">Department</label>
-
-
-              
-              <select id="Department_Id" name="Department_Id" [(ngModel)]="presentations_.Department_Id" required
-                      class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-                      <option [value]="0" selected>Select</option>
-                <option [value]="dept.Department_Id" *ngFor="let dept of department_Data">{{dept?.Department_Name}}</option>
-              </select>
-            </div>
+        
 
             <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-blue-500 font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             Save

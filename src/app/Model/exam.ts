@@ -4,7 +4,7 @@ export class Exam {
   Exam_Name: string; 
   Department_Id: number;
   Pass_Mark: number; 
-  No_Of_Questions: number; 
+  No_of_Questions: number; 
   Duration: number;
 
   

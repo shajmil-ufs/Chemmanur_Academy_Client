@@ -14,6 +14,7 @@ export class BannerComponent  implements OnInit{
   filepath: string;  File_Name:string=''
   fileChanged: boolean=false;
   isLoading:boolean=false
+  imgLoaded:boolean=false
   Banner: any={};
   constructor(  private route: ActivatedRoute,    public dialog: MatDialog
 ,    private router: Router,private carousel_Services:carousel_Service) { 
@@ -35,6 +36,7 @@ clear_Banner(){
 }
 Search_carousel(){
   this.isLoading=true
+  this.imgLoaded=false
   this.carousel_Services.Search_carousel('').subscribe(res=>{
     console.log('res: ', res);
     if(res[0][0])
@@ -46,10 +48,10 @@ Search_carousel(){
        this.Banner.filepath=res.path
        this.Banner.File_Name=res.name
        console.log('  this.Banner: ',   this.Banner);
+this.isLoading=false
 
 
     }
-    this.isLoading=false
 
    })        
 }
@@ -57,7 +59,7 @@ Search_carousel(){
     this.Banner.fileChanged = true;
     const file = event.target.files[0]; // Get the first file selected by the user
     if (file) {
-
+ 
 
       console.log('file.size: ', file.size);
       console.log(' 5 * 1024 * 1024: ',  5 * 1024 * 1024);
@@ -99,7 +101,7 @@ save_Banner(){
             console.log('res: ', res);
             this.carousel_Services.Save_carousel(this.Banner).subscribe(res=>{
               this.openDialog('Saved', 'false');
-
+              this.Banner.fileChanged=false
               this.Search_carousel()        
             
             

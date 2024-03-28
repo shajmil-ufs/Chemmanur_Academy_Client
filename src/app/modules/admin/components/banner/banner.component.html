@@ -32,8 +32,8 @@
     </h1>
 
 
-    <img *ngIf="!isLoading" height=" 600px" [src]="filepath+Banner.filepath" alt="" srcset="">
-    <section *ngIf="isLoading"> 
+    <img [hidden]="!imgLoaded"  *ngIf="!isLoading" (load)="imgLoaded=true" height=" 600px" [src]="filepath+Banner.filepath" alt="" srcset="">
+    <section *ngIf="isLoading || !imgLoaded"> 
         <!-- component -->
     <div class="bg-white rounded-lg shadow-md p-4 animate-pulse" >
     <ng-container >

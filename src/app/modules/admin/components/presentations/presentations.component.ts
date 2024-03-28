@@ -11,6 +11,7 @@ import { presentations_Service } from '../../services/presentations.Service';
 import { MatDialog } from '@angular/material/dialog';
 import { department_Service } from '../../services/department.Service';
 import { environment } from 'src/environments/environment';
+import * as e from 'express';
 
 @Component({
 selector: 'app-presentations',
@@ -158,9 +159,11 @@ Save_presentations(){
   this.issLoading=true;
   for (const field of requiredFields) {
     if (!this.presentations_[field]) {
-      
-      this.openDialog(`${field.replace(/_/g, ' ')} is required`,'3');
-
+      if(field=='Department_Id')
+      this.openDialog(`Department is required`,'3');
+      else
+      this.openDialog(`Presentation Name is required`,'3');
+      this.issLoading=false;
       return;
     }
   }
@@ -168,7 +171,9 @@ Save_presentations(){
      if (!this.fileChanged &&this.presentations_.PPT_ID  ) {   //for edit if image is there then no need to upload to s3
         this.save();
     } else if (!this.presentations_.file) {
-        const dialogRef = this.dialogBox.open(DialogBox_Component, { panelClass: 'Dialogbox-Class', data: { Message: 'Select Document', Type: '3' } });
+        const dialogRef = this.dialogBox.open(DialogBox_Component, { panelClass: 'Dialogbox-Class', data: { Message: 'Choose Presentation File', Type: '3' } });
+        this.issLoading=false;
+        return;
     } else {
         this.upload();
     }
@@ -222,25 +227,35 @@ this.issLoading=false;
 }
 handleFileInput(event: any): void {
   this.fileChanged = true;
-  const file = event.target.files[0]; 
+  const file = event.target.files[0];
+  const allowedExtensions = ['pdf']; // Array of allowed extensions
+
   if (file) {
-      if (file.size > 5 * 1024 * 1024) { // Check if file size exceeds 5 MB
+    const extension = file.name.split('.').pop().toLowerCase(); // Get the file extension
 
-
-        const dialogRef = this.dialogBox.open(DialogBox_Component, {
-          panelClass: 'dialogbox-class',
-          data: {Message: 'File size exceeds 5 MB. Please select a smaller file.',Type: "3" }
-        });
-          alert();
-          this.fileChanged = false;
-
-      } else {
-          this.presentations_.File_Name = file.name;
-          this.presentations_.file = file;
-          console.log(file);
-      }
+    if (!allowedExtensions.includes(extension)) {
+      // Display an error message if the file extension is not allowed
+      const dialogRef = this.dialogBox.open(DialogBox_Component, {
+        panelClass: 'dialogbox-class',
+        data: { Message: 'Only PDF files are allowed.', Type: "3" }
+      });
+      this.fileChanged = false;
+    } else if (file.size > 5 * 1024 * 1024) {
+      // Check if file size exceeds 5 MB
+      const dialogRef = this.dialogBox.open(DialogBox_Component, {
+        panelClass: 'dialogbox-class',
+        data: { Message: 'File size exceeds 5 MB. Please select a smaller file.', Type: "3" }
+      });
+      this.fileChanged = false;
+    } else {
+      // If the file meets the requirements, assign it to the presentations_ object
+      this.presentations_.File_Name = file.name;
+      this.presentations_.file = file;
+      console.log(file);
+    }
   }
 }
+
 
   upload(){
     this.issLoading=true

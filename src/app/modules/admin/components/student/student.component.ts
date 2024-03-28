@@ -75,6 +75,11 @@ trackByFn(index, item)
 {
 return index;
 }
+openCalender(picker){
+  if(!this.student_.Expiry_Account_Date){
+    picker.open()
+  }
+}
 
  Clr_student()
  {
@@ -154,9 +159,9 @@ Save_student()
     switch (field) {
         case 'Email':
             if (!this.student_[field]) {
-                message = 'Email Id is required';
+                message = 'Email ID is required';
             }else if (!/\S+@\S+\.\S+/.test(this.student_[field])) {
-              message = 'Invalid Email Id';
+              message = 'Invalid Email ID';
           }
             break;
         case 'Expiry_Account_Date':
@@ -215,6 +220,17 @@ const dialogRef = this.dialogBox.open( DialogBox_Component, {panelClass:'Dialogb
 formatDate(dateString: string): string {
   const date = new Date(dateString);
   return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
+}
+limitMaxLength(event: any,model): void {
+  const maxLength = 14;
+  if (event.target.value.length > maxLength) {
+    event.target.value = event.target.value.slice(0, maxLength); // Trim the input value
+    model = event.target.value; // Update the ngModel value
+  }
+
+
+
+
 }
 Edit_student(student_e:student,index)
 {

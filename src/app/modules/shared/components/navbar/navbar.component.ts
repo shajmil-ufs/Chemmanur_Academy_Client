@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IsActiveMatchOptions, Router } from '@angular/router';
 import { BaseApi } from '../../services/_BaseApi.Service';
+import { ObservablesService } from '../../services/observables.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +14,11 @@ export class NavbarComponent implements OnInit {
   user =localStorage.getItem('User_Type')
   title: string='Dashboard';
   data:any
+  userEmail: any='';
+  userName: any='';
   constructor(
     private router: Router,
-    private dataService:BaseApi
+    private dataService:ObservablesService
 
 
 ) {  
@@ -30,7 +33,7 @@ export class NavbarComponent implements OnInit {
     { label: 'Eligibility Criteria', link: '/admin/eligibility_criteria', action: '' },
     { label: 'Exam Type', link: '/admin/exam_types', action: '' },
     { label: 'Question', link: '/admin/question', action: '' },
-    { label: 'Sign Out', link: '#', action: 'logout' },
+
    
   ]:this.menuItems=[{ label: 'Dashboard', link: '/user/dash', action: '' },
   { label: 'PPT', link: '/user/ppt', action: '' },
@@ -42,12 +45,14 @@ export class NavbarComponent implements OnInit {
   { label: 'Question Bank', link: '/user/question_bank', action: '' },
   { label: 'Online Test', link: '/user/student-exam', action: '' },
 
-  { label: 'Sign Out', link: '#', action: 'logout' }]
+ ]
 }
   
 
 ngOnInit(): void {
-  this.title = this.dataService.getNav();
+  this.title = this.dataService.getData('NavTitle');
+  this.userEmail = this.dataService.getData('Email');
+  this.userName = this.dataService.getData('Name');
   
   
   }
